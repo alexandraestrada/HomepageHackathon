@@ -17,15 +17,7 @@ $(function() {
     ui.placeholder.animate({
       width: ui.helper.width(),
       height: ui.helper.height()
-    }, 1000);
-    ui.helper.animate({
-      width: ui.item.width(),
-      height: ui.item.height()
-    }, 1000, function() {alert("hi")});
-  }
-
-  function ondrop() {
-    //alert("hi")
+    }, 500);
   }
 
   // interact('img.draggable')

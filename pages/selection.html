@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
 		<link rel="stylesheet" href="./css/selection.css" type="text/css" media="all">
+		<script type="text/javascript" charset="utf-8" src="./js/d3.min.js"></script>
 		<title></title>
 	</head>
 	<body>
@@ -14,7 +15,39 @@
 		<button class="undoBtn">undo</button>
 
 		<script>
+			var dsvg = d3.select('svg');
+			var svg = document.querySelector('svg');
 			var p = document.querySelector('path');
+			var btn = document.querySelector('.undoBtn');
+
+			function update(data) {
+				// DATA JOIN
+				// Join new data with old elements, if any.
+				var circles = dsvg.selectAll("circle")
+						.data(points);
+
+				// UPDATE
+				// Update old elements as needed.
+				// circles.attr("class", "update");
+
+				// ENTER
+				// Create new elements as needed.
+				circles.enter().append("circle")
+					.attr('r', 10);
+
+				// ENTER + UPDATE
+				// Appending to the enter selection expands the update selection to include
+				// entering elements; so, operations on the update selection after appending to
+				// the enter selection will apply to both entering and updating nodes.
+				// text.text(function(d) { return d; });
+				circles.attr('cx', function(d) {return d.x;})
+					.attr('cy', function(d) {return d.y;});
+
+				// EXIT
+				// Remove old elements as needed.
+				circles.exit().remove();
+			}
+
 
 			// TODO undo feature
 			var clicks = [];
@@ -55,16 +88,12 @@
 
 
 				// Render circles as well
-				points.forEach(function(pnt) {
-					var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
-					circle.setAttribute('cx', pnt.x);
-					circle.setAttribute('cy', pnt.y);
-					circle.setAttribute('r', 5);
-					svg.appendChild(circle);
-				});
+				// Consider using d3 selections, otherwise we have to manually remove the circles dom elements as well
+
+
+				update(points);
 			}
 
-			var svg = document.querySelector('svg');
 			svg.addEventListener('click', function(event) {
 				// TODO
 				// note: it seems clientX and clientY coordinates are not going to be relative to svg shape... need to fix this
@@ -77,6 +106,9 @@
 			// - is this needed?
 			function endPath() {};
 
+
+			// DEFECT
+			// can't undo last circle
 			function undo() {
 				if (points.length === 0) {
 					console.log("No more points to undo!");
@@ -87,7 +119,6 @@
 				renderPoints(p, points);
 			}
 
-			var btn = document.querySelector('.undoBtn');
 			btn.addEventListener('click', undo);
 
 

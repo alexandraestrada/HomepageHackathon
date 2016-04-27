@@ -15,5 +15,5 @@ app.route('/login')
 		res.send('processing login for validation')
 	})
 
-app.listen(3000)
+app.listen(process.env.PORT || 5000)
 console.log('magic port on 3000')

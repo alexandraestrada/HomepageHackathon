@@ -9,8 +9,9 @@
 	<body>
 		<!-- inlining svg within html -->
 		<svg width="325px" height="325px" xmlns="http://www.w3.org/2000/svg">
-			  <path d="M10 10 L 50 10 L 10 90"/>
+			  <path d=""/>
 		</svg>
+		<button class="undoBtn">undo</button>
 
 		<script>
 			var p = document.querySelector('path');
@@ -32,7 +33,11 @@
 
 				points.push({x: x, y: y});
 				console.log(points);
+				renderPoints(p, points)
+			}
 
+
+			function renderPoints(path, points) {
 				// Render start point string
 				var startPntStr = "M" + parseInt(points[0].x) + ' ' + parseInt(points[0].y);
 
@@ -46,23 +51,34 @@
 				// Concatanate points string w/ path string
 				pathStr = [startPntStr, ' ', pointsStr, 'Z'].join('');
 				console.log(pathStr);
-				p.setAttribute('d', pathStr);
+				path.setAttribute('d', pathStr);
 			}
-
 
 			var svg = document.querySelector('svg');
 			svg.addEventListener('click', function(event) {
-
 				// TODO
 				// note: it seems clientX and clientY coordinates are not going to be relative to svg shape... need to fix this
 				console.log(event);
-				var bcr = svgOffset = this.getBoundingClientRect();
-				addPoint(p, event.clientX - bcr.x, event.clientY - bcr.y);
+				var bcr = this.getBoundingClientRect();
+				addPoint(p, event.clientX - bcr.left, event.clientY - bcr.top);
 			});
 
 			// TODO
 			// - is this needed?
 			function endPath() {};
+
+			function undo() {
+				if (points.length === 0) {
+					console.log("No more points to undo!");
+					return;
+				}
+				points.pop();
+				console.log(points);
+				renderPoints(p, points);
+			}
+
+			var btn = document.querySelector('.undoBtn');
+			btn.addEventListener('click', undo);
 
 
 

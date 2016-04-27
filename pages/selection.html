@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="./css/selection.css" type="text/css" media="all">
+		<title></title>
+	</head>
+	<body>
+		<!-- inlining svg within html -->
+		<svg width="325px" height="325px" xmlns="http://www.w3.org/2000/svg">
+			  <path d="M10 10 L 50 10 L 10 90"/>
+		</svg>
+
+		<script>
+			var p = document.querySelector('path');
+
+			// TODO undo feature
+			var clicks = [];
+
+			// Called when user starts adding path (first click, will add initial path)
+			function startPath(x, y) {
+				var currentPath = document.querySelector('.currentSelection');
+				// var path = ['M', ' ', parseInt(x), ' ', parseInt(y)].join('');
+				// points.push({x: parseInt(x), y: parseInt(y)});
+				// currentPath.setAttribute('d', path);
+			}
+
+			// Add point to pathstring
+			var points = [];
+			function addPoint(path, x, y) {
+
+				points.push({x: x, y: y});
+				console.log(points);
+
+				// Render start point string
+				var startPntStr = "M" + parseInt(points[0].x) + ' ' + parseInt(points[0].y);
+
+				// Render points string for rest of points.
+				var pointsStr = points.slice(1).reduce(function(memo, point) {
+					return memo + "L" + parseInt(point.x) + ' ' + parseInt(point.y) + ' ';
+				}, '');
+				console.log(pointsStr);
+
+
+				// Concatanate points string w/ path string
+				pathStr = [startPntStr, ' ', pointsStr, 'Z'].join('');
+				console.log(pathStr);
+				p.setAttribute('d', pathStr);
+			}
+
+
+			var svg = document.querySelector('svg');
+			svg.addEventListener('click', function(event) {
+
+				// TODO
+				// note: it seems clientX and clientY coordinates are not going to be relative to svg shape... need to fix this
+				console.log(event);
+				var bcr = svgOffset = this.getBoundingClientRect();
+				addPoint(p, event.clientX - bcr.x, event.clientY - bcr.y);
+			});
+
+			// TODO
+			// - is this needed?
+			function endPath() {};
+
+
+
+		</script>
+	</body>
+</html>

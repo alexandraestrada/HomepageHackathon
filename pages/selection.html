@@ -52,6 +52,16 @@
 				pathStr = [startPntStr, ' ', pointsStr, 'Z'].join('');
 				console.log(pathStr);
 				path.setAttribute('d', pathStr);
+
+
+				// Render circles as well
+				points.forEach(function(pnt) {
+					var circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+					circle.setAttribute('cx', pnt.x);
+					circle.setAttribute('cy', pnt.y);
+					circle.setAttribute('r', 5);
+					svg.appendChild(circle);
+				});
 			}
 
 			var svg = document.querySelector('svg');

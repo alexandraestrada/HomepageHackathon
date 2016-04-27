@@ -71,21 +71,24 @@
 
 
 			function renderPoints(path, points) {
-				// Render start point string
-				var startPntStr = "M" + parseInt(points[0].x) + ' ' + parseInt(points[0].y);
+				if (points.length < 2 ) {
+					path.setAttribute('d', '');
+				} else {
+					// Render start point string
+					var startPntStr = "M" + parseInt(points[0].x) + ' ' + parseInt(points[0].y);
 
-				// Render points string for rest of points.
-				var pointsStr = points.slice(1).reduce(function(memo, point) {
-					return memo + "L" + parseInt(point.x) + ' ' + parseInt(point.y) + ' ';
-				}, '');
-				console.log(pointsStr);
+					// Render points string for rest of points.
+					var pointsStr = points.slice(1).reduce(function(memo, point) {
+						return memo + "L" + parseInt(point.x) + ' ' + parseInt(point.y) + ' ';
+					}, '');
+					console.log(pointsStr);
 
 
-				// Concatanate points string w/ path string
-				pathStr = [startPntStr, ' ', pointsStr, 'Z'].join('');
-				console.log(pathStr);
-				path.setAttribute('d', pathStr);
-
+					// Concatanate points string w/ path string
+					pathStr = [startPntStr, ' ', pointsStr, 'Z'].join('');
+					console.log(pathStr);
+					path.setAttribute('d', pathStr);
+				}
 
 				// Render circles as well
 				// Consider using d3 selections, otherwise we have to manually remove the circles dom elements as well
@@ -107,8 +110,6 @@
 			function endPath() {};
 
 
-			// DEFECT
-			// can't undo last circle
 			function undo() {
 				if (points.length === 0) {
 					console.log("No more points to undo!");

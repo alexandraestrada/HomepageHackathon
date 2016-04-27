@@ -3,7 +3,7 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.6/interact.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<script type="text/javascript" src="js/dragndrop.js"></script>
+	<script type="text/javascript" src="../assets/js/dragndrop.js"></script>
 	<link rel="stylesheet" type="text/css" href="../assets/css/main.css"/>
 	<link rel="stylesheet" type="text/css" href="../assets/css/sidebar.css"/>
 	<link rel="stylesheet" type="text/css" href="../assets/css/imgDiv.css"/>
@@ -13,7 +13,22 @@
 	<div id="mainDiv">
 		<div id="imgDiv">
 			<!-- <div id="fileDiv"><form id="dzForm" class="dropzone" action="/file-upload"></form></div> -->
-			<ul>
+			<ul id="imgList">
+				<li><img class="draggable" src="../assets/images/C6030042_01.png" /></li>
+				<li><img class="draggable" src="../assets/images/C6030042_06.jpg" /></li>
+				<li><img class="draggable" src="../assets/images/C6030042_07.jpg" /></li>
+				<li><img class="draggable" src="../assets/images/C6030042_08.jpg" /></li>
+				<li><img class="draggable" src="../assets/images/C6030042_06.jpg" /></li>
+				<li><img class="draggable" src="../assets/images/C6030042_07.jpg" /></li>
+				<li><img class="draggable" src="../assets/images/C6030042_08.jpg" /></li>
+				<li><img class="draggable" src="../assets/images/C6030042_06.jpg" /></li>
+				<li><img class="draggable" src="../assets/images/C6030042_07.jpg" /></li>
+				<li><img class="draggable" src="../assets/images/C6030042_08.jpg" /></li>
+				<li><img class="draggable" src="../assets/images/C6030042_09.jpg" /></li>
+				<li><img class="draggable" src="../assets/images/C6030042_10.jpg" /></li>
+				<li><img class="draggable" src="../assets/images/C6030042_11.jpg" /></li>
+			</ul>
+		<!-- <ul>
 			<li class="draggable"><img src="../assets/images/C6030042_01.png" /><div id="overlay">960 X 60</div></li>
 			<li class="draggable"><img src="../assets/images/C6030042_06.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
 			<li class="draggable"><img src="../assets/images/C6030042_07.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
@@ -27,38 +42,14 @@
 			<li class="draggable"><img src="../assets/images/C6030042_09.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
 			<li class="draggable"><img src="../assets/images/C6030042_10.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
 			<li class="draggable"><img src="../assets/images/C6030042_11.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
-		</ul>
+		</ul> -->
 		</div>
 		<div id="contentDiv" class="area">
 			<div>
-				<!--<ul id="sortable">
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_06.jpg" width="320" height="251" /></li>
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_07.jpg" width="320" height="251" /></li>
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_08.jpg" width="320" height="251" /></li>
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_06.jpg" width="320" height="291" /></li>
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_07.jpg" width="320" height="291" /></li>
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_08.jpg" width="320" height="291" /></li>
-				</ul>
-				<ul id="sortable2">
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_06.jpg" width="320" height="251" /></li>
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_07.jpg" width="320" height="251" /></li>
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_08.jpg" width="320" height="251" /></li>
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_09.jpg" width="320" height="291" /></li>
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_10.jpg" width="320" height="291" /></li>
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_11.jpg" width="320" height="291" /></li>
-				</ul>-->
-			</div>
-			<!--<div class="divrow1" data-row-num="row_05">
-						<img class="draggable" src="../assets/images/C6030042_06.jpg" width="320" height="251" />
-						<img class="draggable" src="../assets/images/C6030042_07.jpg" width="320" height="251" />
-						<img class="draggable" src="../assets/images/C6030042_08.jpg" width="320" height="251" />
+				<ul id="imgMainList">
+					<li><img class="draggable" src="../assets/images/C6030042_07.jpg" /></li>
 				</ul>
 			</div>
-			<div class="row collapse block_grid" data-row-num="row_06">
-						<img class="draggable" src="../assets/images/C6030042_09.jpg" width="320" height="291" />
-						<img class="draggable" src="../assets/images/C6030042_10.jpg" width="320" height="291" />
-						<img class="draggable" src="../assets/images/C6030042_11.jpg" width="320" height="291" />
-			</div>-->
 		</div>
 		<nav id="rightNav" class="main-menu">
 		    <ul>

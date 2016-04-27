@@ -6,8 +6,11 @@ var mongoose = require('mongoose');
 // var port = process.env.PORT || 5000;
 var test = require('./models/test.js');
 var User = require('./models/user.js');
-
-var config = require('./config.js')
+var path = require('path');
+var config = require('./config.js');
+formidable = require('formidable'),
+   util = require('util'),
+   fs   = require('fs-extra')
 
 // test.saveItem()
 
@@ -71,15 +74,17 @@ app.use('/users', userRouter)
 
 
 app.get('/', function(req,res) {
-	// res.sendFile(path.join(__dirname + '/index.html'))
-  // res.send('test test')
+	res.sendFile(path.join(__dirname + '/pages/login.html'))
+
 
 });
 
 
+
+
 // static route
 // - This should be for static resources, like js/css/html files
-app.use(express.static('public'));
+app.use(express.static('assets'));
 
 
 //  template routes
@@ -97,6 +102,44 @@ app.get('/template', function(req, res, next) {
       console.log('Sent:', 'template.html');
     }
   });
+});
+
+app.get('/imageupload', function(req,res) {
+  res.sendFile(path.join(__dirname + '/pages/imageupload.html'))
+})
+
+
+app.post('/upload', function (req, res){
+  var form = new formidable.IncomingForm();
+  form.parse(req, function(err, fields, files) {
+    res.writeHead(200, {'content-type': 'text/plain'});
+    res.write('received upload:\n\n');
+    res.end(util.inspect({fields: fields, files: files}));
+  });
+
+  form.on('end', function(fields, files) {
+    /* Temporary location of our uploaded file */
+    var temp_path = this.openedFiles[0].path;
+    /* The file name of the uploaded file */
+    var file_name = this.openedFiles[0].name;
+    /* Location where we want to copy the uploaded file */
+    var new_location = 'uploads/';
+
+    fs.copy(temp_path, new_location + file_name, function(err) {  
+      if (err) {
+        console.error(err);
+      } else {
+        console.log("success!")
+      }
+    });
+  });
+});
+
+app.get('/uploads/fullsize/:file', function (req, res){
+  file = req.params.file;
+  var img = fs.readFileSync(__dirname + "/uploads/fullsize/" + file);
+  res.writeHead(200, {'Content-Type': 'image/jpg' });
+  res.end(img, 'binary');
 });
 
 

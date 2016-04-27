@@ -38,6 +38,3 @@ div.divrow1 img {
 ul, li { padding: 0; margin: 5px;}
 #sortable, #sortable2 { list-style-type: none; margin: 0; padding: 0;  }
 #sortable li, #sortable2 li { float: left;  }
-.temp { width: 322px; height: 253px; margin: auto; -webkit-animation: glow 1s ease-in-out infinite; animation: glow 1s ease-in-out infinite; }
-@-webkit-keyframes glow {50% { box-shadow: 0 0 30px blue; }}
-@keyframes glow {50% { box-shadow: 0 0 30px blue; }}

@@ -108,6 +108,9 @@ app.get('/imageupload', function(req,res) {
   res.sendFile(path.join(__dirname + '/pages/imageupload.html'))
 })
 
+app.get('/workarea', function(req,res) {
+  res.sendFile(path.join(__dirname + '/pages/workarea.html'))
+})
 
 app.post('/upload', function (req, res){
   var form = new formidable.IncomingForm();
@@ -125,7 +128,7 @@ app.post('/upload', function (req, res){
     /* Location where we want to copy the uploaded file */
     var new_location = 'uploads/';
 
-    fs.copy(temp_path, new_location + file_name, function(err) {  
+    fs.copy(temp_path, new_location + file_name, function(err) {
       if (err) {
         console.error(err);
       } else {

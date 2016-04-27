@@ -76,6 +76,36 @@ app.get('/', function(req,res) {
 
 });
 
+
+// static route
+// - This should be for static resources, like js/css/html files
+app.use(express.static('public'));
+
+
+//  template routes
+app.get('/template', function(req, res, next) {
+  var options = {
+    root: __dirname + '/pages/',
+  };
+
+  res.sendFile('template.html', options, function(err) {
+    if (err) {
+      console.log(err);
+      res.status(err.status).end();
+    }
+    else {
+      console.log('Sent:', 'template.html');
+    }
+  });
+});
+
+
+// TODO handle this route
+app.get('/template/new', function(req, res, next) {
+
+});
+
+
 // app.route('/users')
 //     .post(function(req,res) {
 //         var user = new User();

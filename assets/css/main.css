@@ -1,0 +1,65 @@
+/*#mainDiv > div { border: 2px solid lime; }*/
+body {
+	font-size: 10pt;
+	margin: 0;
+	padding: 1em;
+}
+#mainDiv {
+	width: 100%;
+	height: 100%;
+	background: #e2e2e2;
+ 	overflow: hidden;
+}
+#imgDiv { height: 100%; float: left; overflow-y: auto; width: 20%;}
+#imgDiv li { position: relative; }
+#imgDiv li:hover div { display: block;
+	background-color: black;
+	opacity: 0.9;
+	color: white;
+	text-align: center;
+	cursor: move;
+}
+#imgDiv span {
+	position: relative;
+	font-size: 1.5em;
+	top: 45%;
+}
+#overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+#fileDiv {
+	margin: 1em;
+	border: 5px dashed gray;
+	height: 90%;
+}
+form.dropzone {
+	height: 50%;
+	text-align: center;
+	cursor: pointer;
+	padding-top: 50%;
+}
+div.divrow1 img {
+	-webkit-transform: translate(0px, 0px);
+   transform: translate(0px, 0px);
+}
+#contentDiv {
+    height: 100%;
+    float: left;
+    width: calc(80% - 40px);
+}
+#contentDiv > div {
+	margin: auto;
+	width: 1000px;
+	height: 100%;
+}
+ul, li { padding: 0; margin: 5px;}
+#sortable, #sortable2 { list-style-type: none; margin: 0; padding: 0;  }
+#sortable li, #sortable2 li { float: left;  }
+.temp { width: 322px; height: 253px; margin: auto; -webkit-animation: glow 1s ease-in-out infinite; animation: glow 1s ease-in-out infinite; }
+@-webkit-keyframes glow {50% { box-shadow: 0 0 30px blue; }}
+@keyframes glow {50% { box-shadow: 0 0 30px blue; }}

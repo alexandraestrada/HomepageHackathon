@@ -1,4 +1,3 @@
-/*#mainDiv > div { border: 2px solid lime; }*/
 body {
 	font-size: 10pt;
 	margin: 0;
@@ -10,28 +9,6 @@ body {
 	height: 100%;
 	background: #e2e2e2;
  	overflow: hidden;
-}
-#imgDiv { height: 100%; float: left; overflow-y: auto; width: 20%;}
-#imgDiv li { position: relative; }
-#imgDiv li:hover div { display: block;
-	background-color: black;
-	opacity: 0.9;
-	color: white;
-	text-align: center;
-	cursor: move;
-}
-#imgDiv span {
-	position: relative;
-	font-size: 1.5em;
-	top: 45%;
-}
-#overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	display: none;
 }
 #fileDiv {
 	margin: 1em;

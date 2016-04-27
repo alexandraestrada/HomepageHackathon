@@ -1,0 +1,63 @@
+<style type="text/css">
+	body { margin: 0; }
+	#canvas {
+		width: 100%;
+		height: 100%;
+		background-color: #f6f6f6;
+		position: relative;
+	}
+	.rect {
+		border: 1px solid red;
+		position: absolute;
+	}
+</style>
+
+<div id="canvas"></div>
+
+<script type="text/javascript">
+	var canvas = document.getElementById("canvas"),
+		mouse = {
+			x: 0,
+			y: 0,
+			startX: 0,
+			startY: 0
+		},
+		el = null;
+
+	canvas.onclick = function(e) {
+		if(el === null) {
+			mouse.startX = mouse.x;
+			mouse.startY = mouse.y;
+			el = document.createElement("div");
+			el.className = "rect";
+			el.style.top = mouse.y + "px";
+			el.style.left = mouse.x + "px";
+			canvas.appendChild(el);
+			canvas.style.cursor = "crosshair";
+		} else {
+			el = null;
+			canvas.style.cursor = "default";
+		}
+	};
+
+	canvas.onmousemove = function(e) {
+		setMousePosition(e);
+		if(el !== null) {
+			el.style.width = Math.abs(mouse.x - mouse.startX) + "px";
+			el.style.height = Math.abs(mouse.y - mouse.startY) + "px";
+			el.style.top = (mouse.y - mouse.startY < 0) ? mouse.y + "px" : mouse.startY + "px";
+			el.style.left = (mouse.x - mouse.startX < 0) ? mouse.x + "px" : mouse.startX + "px";
+		}
+	};
+
+	function setMousePosition(e) {
+		var ev = e || window.event;
+		if (ev.pageX) {
+			mouse.x = ev.pageX + window.pageXOffset;
+			mouse.y = ev.pageY + window.pageYOffset;
+		} else if (ev.clientX) {
+			mouse.x = ev.clientX + document.body.scrollLeft;
+			mouse.y = ev.clientY + document.body.scrollTop;
+		}
+	};
+</script>

@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 // var port = process.env.PORT || 5000;
 var test = require('./models/test.js');
 var User = require('./models/user.js');
-
+var path = require('path');
 var config = require('./config.js')
 
 // test.saveItem()
@@ -71,15 +71,16 @@ app.use('/users', userRouter)
 
 
 app.get('/', function(req,res) {
-	// res.sendFile(path.join(__dirname + '/index.html'))
-  // res.send('test test')
+	res.sendFile(path.join(__dirname + '/pages/login.html'))
+
 
 });
 
 
+
 // static route
 // - This should be for static resources, like js/css/html files
-app.use(express.static('public'));
+app.use(express.static('assets'));
 
 
 //  template routes

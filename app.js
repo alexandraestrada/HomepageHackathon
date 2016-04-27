@@ -36,18 +36,44 @@ app.use(morgan('dev'))
       console.log ('Succeeded connected to: ' + uristring);
       }
     });
-// mongoose.connect(config.mongoLabURI);
 
 
 
 
 //-------Routes ---------------
 
+var userRouter = express.Router();
+
+// userRouter.get('/', function(req,res) {
+//   res.json('homepage of app')
+// })
+
+userRouter.route('/')
+  .get(function(req,res) {
+    res.json('homepage of the app')
+  })
+  .post(function(req,res) {
+    var user = new User();
+    user.racID = req.body.racID;
+    user.password = req.body.password;
+
+    user.save(function(err) {
+      if(err) {
+        if(err.code ==11000)
+          return res.json({success:false, message:'a user like that already exists'});
+        else
+          return res.send(err)
+      }
+    })
+  })
+
+app.use('/users', userRouter)
 
 
 app.get('/', function(req,res) {
 	// res.sendFile(path.join(__dirname + '/index.html'))
-  res.send('test test')
+  // res.send('test test')
+
 });
 
 // app.route('/users')

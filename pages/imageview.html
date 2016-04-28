@@ -3,64 +3,74 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.6/interact.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<script type="text/javascript" src="js/dragndrop.js"></script>
-	<link rel="stylesheet" type="text/css" href="../assets/css/main.css"/>
-	<link rel="stylesheet" type="text/css" href="../assets/css/sidebar.css"/>
-	<link rel="stylesheet" type="text/css" href="../assets/css/imgDiv.css"/>
+	<script type="text/javascript" src="./js/dragndrop.js"></script>
+	<script type="text/javascript" src="./js/dropzone.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="./css/main.css"/>
+	<link rel="stylesheet" type="text/css" href="./css/sidebar.css"/>
+	<link rel="stylesheet" type="text/css" href="./css/imgDiv.css"/>
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+
+	
 </head>
 <body>
 	<div id="mainDiv">
 		<div id="imgDiv">
-			<!-- <div id="fileDiv"><form id="dzForm" class="dropzone" action="/file-upload"></form></div> -->
-			<ul>
-			<li class="draggable"><img src="../assets/images/C6030042_01.png" /><div id="overlay">960 X 60</div></li>
-			<li class="draggable"><img src="../assets/images/C6030042_06.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
-			<li class="draggable"><img src="../assets/images/C6030042_07.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
-			<li class="draggable"><img src="../assets/images/C6030042_08.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
-			<li class="draggable"><img src="../assets/images/C6030042_06.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
-			<li class="draggable"><img src="../assets/images/C6030042_07.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
-			<li class="draggable"><img src="../assets/images/C6030042_08.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
-			<li class="draggable"><img src="../assets/images/C6030042_06.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
-			<li class="draggable"><img src="../assets/images/C6030042_07.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
-			<li class="draggable"><img src="../assets/images/C6030042_08.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
-			<li class="draggable"><img src="../assets/images/C6030042_09.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
-			<li class="draggable"><img src="../assets/images/C6030042_10.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
-			<li class="draggable"><img src="../assets/images/C6030042_11.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
-		</ul>
+			<div id="fileDiv"><form id="dzForm" class="dropzone" action="/upload" method="post"></form></div>
+			<ul id="imgList">
+
+			</ul>
+			<!-- <ul id="imgList">
+				<li><img class="draggable" src="./images/C6030042_01.png" /></li>
+				<li><img class="draggable" src="./images/C6030042_02.png" /></li>
+				<li><img class="draggable" src="./images/C6030042_03.jpg" /></li>
+				<li><img class="draggable" src="./images/C6030042_04.jpg" /></li>
+				<li><img class="draggable" src="./images/C6030042_05.gif" /></li>
+				<li><img class="draggable" src="./images/C6030042_06.jpg" /></li>
+				<li><img class="draggable" src="./images/C6030042_07.jpg" /></li>
+				<li><img class="draggable" src="./images/C6030042_08.jpg" /></li>
+				<li><img class="draggable" src="./images/C6030042_09.jpg" /></li>
+				<li><img class="draggable" src="./images/C6030042_10.jpg" /></li>
+				<li><img class="draggable" src="./images/C6030042_11.jpg" /></li>
+				<li><img class="draggable" src="./images/C6030042_12.jpg" /></li>
+				<li><img class="draggable" src="./images/C6030042_13.gif" /></li>
+				<li><img class="draggable" src="./images/C6030042_14.gif" /></li>
+				<li><img class="draggable" src="./images/C6030042_15.png" /></li>
+				<li><img class="draggable" src="./images/C6030042_16.jpg" /></li>
+				<li><img class="draggable" src="./images/C6030042_17.jpg" /></li>
+				<li><img class="draggable" src="./images/C6030042_18.jpg" /></li>
+				<li><img class="draggable" src="./images/C6030042_19.jpg" /></li>
+				<li><img class="draggable" src="./images/C6030042_20.jpg" /></li>
+				<li><img class="draggable" src="./images/C6030042_21.jpg" /></li>
+				<li><img class="draggable" src="./images/C6030042_22.png" /></li>
+				<li><img class="draggable" src="./images/C6030042_23.jpg" /></li>
+				<li><img class="draggable" src="./images/C6030042_24.jpg" /></li>
+				<li><img class="draggable" src="./images/C6030042_25.jpg" /></li>
+				<li><img class="draggable" src="./images/C6030042_26.png" /></li>
+			</ul> -->
+		<!-- <ul>
+			<li class="draggable"><img src="./images/C6030042_01.png" /><div id="overlay">960 X 60</div></li>
+			<li class="draggable"><img src="./images/C6030042_06.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
+			<li class="draggable"><img src="./images/C6030042_07.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
+			<li class="draggable"><img src="./images/C6030042_08.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
+			<li class="draggable"><img src="./images/C6030042_06.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
+			<li class="draggable"><img src="./images/C6030042_07.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
+			<li class="draggable"><img src="./images/C6030042_08.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
+			<li class="draggable"><img src="./images/C6030042_06.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
+			<li class="draggable"><img src="./images/C6030042_07.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
+			<li class="draggable"><img src="./images/C6030042_08.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
+			<li class="draggable"><img src="./images/C6030042_09.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
+			<li class="draggable"><img src="./images/C6030042_10.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
+			<li class="draggable"><img src="./images/C6030042_11.jpg" /><div id="overlay"><span>320 X 250</span></div></li>
+		</ul> -->
 		</div>
 		<div id="contentDiv" class="area">
 			<div>
-				<!--<ul id="sortable">
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_06.jpg" width="320" height="251" /></li>
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_07.jpg" width="320" height="251" /></li>
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_08.jpg" width="320" height="251" /></li>
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_06.jpg" width="320" height="291" /></li>
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_07.jpg" width="320" height="291" /></li>
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_08.jpg" width="320" height="291" /></li>
-				</ul>
-				<ul id="sortable2">
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_06.jpg" width="320" height="251" /></li>
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_07.jpg" width="320" height="251" /></li>
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_08.jpg" width="320" height="251" /></li>
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_09.jpg" width="320" height="291" /></li>
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_10.jpg" width="320" height="291" /></li>
-				  <li class="ui-state-default"><img class="" src="../assets/images/C6030042_11.jpg" width="320" height="291" /></li>
-				</ul>-->
-			</div>
-			<!--<div class="divrow1" data-row-num="row_05">
-						<img class="draggable" src="../assets/images/C6030042_06.jpg" width="320" height="251" />
-						<img class="draggable" src="../assets/images/C6030042_07.jpg" width="320" height="251" />
-						<img class="draggable" src="../assets/images/C6030042_08.jpg" width="320" height="251" />
+				<ul id="imgMainList">
 				</ul>
 			</div>
-			<div class="row collapse block_grid" data-row-num="row_06">
-						<img class="draggable" src="../assets/images/C6030042_09.jpg" width="320" height="291" />
-						<img class="draggable" src="../assets/images/C6030042_10.jpg" width="320" height="291" />
-						<img class="draggable" src="../assets/images/C6030042_11.jpg" width="320" height="291" />
-			</div>-->
 		</div>
-		<nav id="rightNav" class="main-menu">
+		<!-- <nav id="rightNav" class="main-menu">
 		    <ul>
 		        <li><a href="#">
 		            <i class="fa fa-home fa-2x"></i>
@@ -105,6 +115,6 @@
 		            <span class="nav-text">Logout</span>
 		        </a></li>
 		    </ul>
-		</nav>
+		</nav> -->
 	</div>
 </body>

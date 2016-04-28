@@ -1,10 +1,27 @@
 
-.container {
-	border:1px solid grey;
-	border-radius:5px;
+#logo {
+	height:7em;
 }
 
 .col-centered {
 	margin: 0 auto;
 	float:none;
+}
+.form-control {
+	text-align: center !important;
+	margin: 0 auto !important;
+	width:40% !important;
+}
+
+.form-border {
+	padding:2em;
+	border:1px solid grey;
+	border-radius:5px;
+	box-shadow: 5px 5px 5px 5px #999;
+}
+.text-centered {
+	text-align: center;
+}
+#sub-header-title {
+	color:#cc0000;
 }

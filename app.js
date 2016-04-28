@@ -7,78 +7,109 @@ var mongoose = require('mongoose');
 var test = require('./models/test.js');
 var User = require('./models/user.js');
 var path = require('path');
-var config = require('./config.js');
+var config = require('./config');
+var passport = require('passport');
+var flash    = require('connect-flash');
+var cookieParser = require('cookie-parser');
+var session      = require('express-session');
 formidable = require('formidable'),
    util = require('util'),
    fs   = require('fs-extra'),
-   http  = require('http');
+   http  = require('http'),
+   jwt = require('jsonwebtoken')
+   // superSecret = 'ilovescotchscotchyscotchscotch'
 
 // test.saveItem()
 
 // ------APP Configs-----------
 
 //bodyparser for POST requests
+// app.use(cookieParser()); // read cookies (needed for auth)
+// app.use(bodyParser()); // get information from html forms
 
-app.use(bodyParser.urlencoded({extended:true}))
-app.use(bodyParser.json())
+app.set('view-engine', 'ejs')
 
-//log requests to console
+
 
 app.use(morgan('dev'))
 
 
-// ---------MONGO configs----------
 
-  var uristring =
-    config.mongoLabURI ||
-    config.mongoLocal;
 
-    mongoose.connect(uristring, function (err, res) {
-      if (err) {
-      console.log ('ERROR connecting to: ' + uristring + '. ' + err);
-      } else {
-      console.log ('Succeeded connected to: ' + uristring);
-      }
-    });
+// mongoose.connect(config.database);
+// app.set('superSecret', config.secret)
+
 
 
 
 
 //-------Routes ---------------
 
-var userRouter = express.Router();
 
-// userRouter.get('/', function(req,res) {
-//   res.json('homepage of app')
+//------User Routes---------
+
+// app.get('/setup', function(req,res) {
+//   var carmen = new User({
+//     racID: 'm88',
+//     password: 'password',
+//     admin:true
+//   })
+
+//   carmen.save(function(err) {
+//     if(err) throw err;
+//     console.log('user saved successss');
+//     res.json({succes: true})
+//   })
 // })
 
-userRouter.route('/')
-  .get(function(req,res) {
-    res.json('homepage of the app')
-  })
-  .post(function(req,res) {
-    var user = new User();
-    user.racID = req.body.racID;
-    user.password = req.body.password;
+// app.get('/login',function(req,res) {
+//  res.sendFile(path.join(__dirname + '/pages/login.html'))
 
-    user.save(function(err) {
-      if(err) {
-        if(err.code ==11000)
-          return res.json({success:false, message:'a user like that already exists'});
-        else
-          return res.send(err)
-      }
-    })
-  })
+// } )
+// app.post('/authenticate', function(req,res) {
+//   User.findOne({racID: req.body.racID})
+//   console.log(req.body.racID)
+// })
 
-app.use('/users', userRouter)
+// app.post('/authenticate', function(req,res) {
+//   User.findOne({
+//     racID: req.body.racID
+//   }, function(err,user) {
+//     if (err) throw err;
+//     if(!user) {
+//       res.json({success:false, message: "Authenication failed b/c user does not exist"})
+//     }
+//     else if(user) {
+//       if(user.password != req.body.password) {
+//         res.json({success:false, message: "Auth failed! wrong password"})
+//       }
+//       else {
+//         var token = jwt.sign(user, app.get(superSecret), {
+//           expiresInMinutes:1440
+//         })
+//         res.json({
+//           success:true,
+//           message: "enjoy your token",
+//           token: token
+//         })
+//       }
+//     }
+//   })
+// })
 
+// })
+
+//-------- HP Route -------
 
 app.get('/', function(req,res) {
-	res.sendFile(path.join(__dirname + '/pages/login.html'))
+  res.render('login.ejs', {
+    greeting: "Hello there"
+  })
+})
 
-
-});
+app.get('/templates', function(req,res) {
+  res.render('templates.ejs')
+})
 
 
 
@@ -147,12 +178,6 @@ app.post('/upload', function (req, res){
   
 });
 
-// app.get('/uploads/fullsize/:file', function (req, res){
-//   file = req.params.file;
-//   var img = fs.readFileSync(__dirname + "/uploads/fullsize/" + file);
-//   res.writeHead(200, {'Content-Type': 'image/jpg' });
-//   res.end(img, 'binary');
-// });
 
 
 // TODO handle this route
@@ -160,42 +185,6 @@ app.get('/template/new', function(req, res, next) {
   res.send()
 });
 
-
-// app.route('/users')
-//     .post(function(req,res) {
-//         var user = new User();
-
-//         user.name = req.body.name;
-//         user.racID = req.body.racID;
-//         user.password = req.body.password;
-
-//         user.save(function(err) {
-//           if (err) {
-//             if (err.code === 11000) {
-//               return res.json({success:false, message:'A user with that racID already exists'})
-//             }
-//             else {
-//               return  res.send(err)
-//             }
-//           }
-//           res.json({message: 'User Created!'})
-//         })
-//     })
-//     .get(function(req,res) {
-//       User.find(function(err, users) {
-//         if(err) res.send(err)
-//          res.json(users)
-//       })
-//     })
-
-// app.route('/login')
-// 	.get(function(req,res) {
-// 		//login form goes here for user login
-// 		res.send('login form goes here')
-// 	})
-// 	.post(function(req,res) {
-// 		res.send('processing login for validation')
-// 	})
 
 
 

@@ -60,10 +60,12 @@
 		</ul> -->
 		</div>
 		<div id="contentDiv" class="area">
-			<div id="layoutDiv">
-				<ul id="imgMainList">
-				</ul>
-			</div>
+
+				<div id="layoutDiv">
+					<ul id="imgMainList">
+					</ul>
+				</div>
+
 			<div id="infoDiv">
 				Specify the alt text for this image: <input id="altInput" type="text"/>
 			</div>
@@ -90,9 +92,9 @@
 		            <i class="fa fa-bar-chart-o fa-2x"></i>
 		            <span class="nav-text">Graphs and Statistics</span>
 		        </a></li>
-		        <li><a href="#">
+		        <li><a id="selection-mode" href="#">
 		            <i class="fa fa-font fa-2x"></i>
-		            <span class="nav-text">Typography and Icons</span>
+		            <span class="nav-text">Select links</span>
 		        </a></li>
 		        <li><a href="#">
 		            <i class="fa fa-table fa-2x"></i>
@@ -115,4 +117,171 @@
 		    </ul>
 		</nav>
 	</div>
+	<script type="text/javascript" src="./js/draw_rect.js"></script>
+
+<style type="text/css">
+	body { margin: 0; }
+	#canvas {
+		width: 100%;
+		height: 100%;
+		background-color: #f6f6f6;
+		position: relative;
+	}
+	.rect {
+		border: 3px dotted black;
+		position: absolute;
+		z-index: 10;
+	}
+</style>
+
+<div id="canvas"></div>
+
+<script type="text/javascript" charset="utf-8" src="./js/interact.js"></script>
+
+<script type="text/javascript">
+
+var dragging = false;
+
+
+
+document.addEventListener("keydown", KeyCheck);  //or however you are calling your method
+function KeyCheck(event)
+{
+   var KeyID = event.keyCode;
+   switch(KeyID)
+   {
+      case 8:
+				// If delete key is pressed, remove last selection from page, and from Model
+				canvas.removeChild(document.querySelector('.rect:last-child'));
+      break;
+      case 46:
+      alert("delete");
+      break;
+      default:
+      break;
+   }
+}
+
+
+
+function wrapWithInteract() {
+	interact('.resize-drag')
+		.draggable({
+			onmove: dragMoveListener,
+			onend: dragEndListener
+		})
+		.resizable({
+			preserveAspectRatio: false,
+			edges: { left: false, right: true, bottom: true, top: false }
+		})
+		.on('resizemove', function (event) {
+			dragging = true;
+			var target = event.target,
+					x = (parseFloat(target.getAttribute('data-x')) || 0),
+					y = (parseFloat(target.getAttribute('data-y')) || 0);
+
+			// update the element's style
+			target.style.width  = event.rect.width + 'px';
+			target.style.height = event.rect.height + 'px';
+
+			// translate when resizing from top or left edges
+			x += event.deltaRect.left;
+			y += event.deltaRect.top;
+
+			target.style.webkitTransform = target.style.transform =
+					'translate(' + x + 'px,' + y + 'px)';
+
+			target.setAttribute('data-x', x);
+			target.setAttribute('data-y', y);
+
+			target.textContent = Math.round(event.rect.width) + '×' + Math.round(event.rect.height);
+	});
+}
+
+
+function dragEndListener() {
+	dragging = true;
+}
+
+function dragMoveListener (event) {
+  var target = event.target,
+      // keep the dragged position in the data-x/data-y attributes
+      x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+      y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+  // translate the element
+  target.style.webkitTransform =
+  target.style.transform =
+    'translate(' + x + 'px, ' + y + 'px)';
+
+  // update the posiion attributes
+  target.setAttribute('data-x', x);
+  target.setAttribute('data-y', y);
+
+}
+
+
+
+	var canvas = document.getElementById("layoutDiv"),
+		mouse = {
+			x: 0,
+			y: 0,
+			startX: 0,
+			startY: 0
+		},
+		el = null;
+
+
+	canvas.onclick = function(e) {
+		if (dragging) {
+			dragging = false;
+			return;
+		}
+
+		if(el === null) {
+			mouse.startX = mouse.x;
+			mouse.startY = mouse.y;
+			el = document.createElement("div");
+			el.className = "rect resize-drag";
+			el.style.top = mouse.y + "px";
+			el.style.left = mouse.x + "px";
+			canvas.appendChild(el);
+			canvas.style.cursor = "crosshair";
+		} else {
+			el = null;
+			canvas.style.cursor = "default";
+
+			// add interact.js to it
+		}
+
+		wrapWithInteract();
+	};
+
+	canvas.onmousemove = function(e) {
+		setMousePosition(e);
+		if(el !== null) {
+			el.style.width = Math.abs(mouse.x - mouse.startX) + "px";
+			el.style.height = Math.abs(mouse.y - mouse.startY) + "px";
+			el.style.top = (mouse.y - mouse.startY < 0) ? mouse.y + "px" : mouse.startY + "px";
+			el.style.left = (mouse.x - mouse.startX < 0) ? mouse.x + "px" : mouse.startX + "px";
+		}
+	};
+
+	function setMousePosition(e) {
+		var ev = e || window.event;
+		if (ev.pageX) {
+			mouse.x = ev.pageX + window.pageXOffset;
+			mouse.y = ev.pageY + window.pageYOffset;
+		} else if (ev.clientX) {
+			mouse.x = ev.clientX + document.body.scrollLeft;
+			mouse.y = ev.clientY + document.body.scrollTop;
+		}
+		// subtract width
+		mouse.x = mouse.x - $('#imgDiv').width();
+		console.log(ev);
+	};
+
+</script>
+
+
 </body>

@@ -24,6 +24,7 @@ $(function() {
     }).fadeIn(750);*/
     $("#imgMainList").find("li.selected").removeClass("selected");
     ui.item.addClass("selected");
+    $("#altInput").focus().val(ui.item.find("img").attr("alt") || "");
   }
 
   /*interact('img.draggable')

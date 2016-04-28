@@ -1,16 +1,16 @@
 $(function() {
 	$("#infoDiv").css("width", $("#contentDiv").width());
 
+	$("#altInput").focusout(function() {
+		$("li.selected").find("img").attr("alt", $(this).val());
+	});
+
 	$("#imgMainList").on("click", function(e) {
 		if(e.target.tagName.toLowerCase() === "img") {
 			$("li.selected").removeClass("selected");
 			$(e.target).parent().addClass("selected");
-			$("#altInput").val($(e.target).attr("alt"));
+			$("#altInput").val($(e.target).attr("alt") || "").focus();
 		}
-	});
-
-	$("#altInput").blur(function() {
-		$("li.selected").find("img").attr("alt", $(this).val());
 	});
 
 	// $(window).resize(function() {

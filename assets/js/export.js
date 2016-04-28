@@ -98,12 +98,12 @@ $(function() {
 						mapName = folder + "_map" + (k + 1);
 						$img = $("<img/>");
 						$img.attr({
-							"src" : "images/" + imgSrc[k],
+							"src" : imgSrc[k],
 							"width" : imgSizes[k].width,
 							"height" : imgSizes[k].height,
 							"usemap" : "#" + mapName
 						});
-						$innerUl.append('<li>' + $img + '<map name="' + mapName + '" id="' + mapName + '" ' + row + '/></li>');
+						$innerUl.append('<li>' + $("<div/>").append($img.clone()).html() + '<map name="' + mapName + '" id="' + mapName + '" ' + row + '/></li>');
 					}
 				}
 				$body.append($rowDiv);

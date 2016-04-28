@@ -1,4 +1,6 @@
 $(function() {
+	"use strict";
+
 	$("#infoDiv").css("width", $("#contentDiv").width());
 
 	$("#altInput").focusout(function() {
@@ -6,6 +8,9 @@ $(function() {
 	});
 
 	$("#imgMainList").on("click", function(e) {
+		if($("#altInput").val().length) {
+			$("li.selected").find("img").attr("alt", $("#altInput").val());
+		}
 		if(e.target.tagName.toLowerCase() === "img") {
 			$("li.selected").removeClass("selected");
 			$(e.target).parent().addClass("selected");

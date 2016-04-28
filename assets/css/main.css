@@ -21,7 +21,7 @@ form.dropzone {
 	padding-top: 50%;
 }
 #contentDiv {
-    height: 100%;
+    height: calc(100% - 46px);
     float: left;
     width: calc(80% - 60px);
     overflow-x: hidden;
@@ -30,7 +30,8 @@ form.dropzone {
 }
 #layoutDiv {
 	margin: auto;
-	width: 975px;
+	padding-top: 10px;
+	width: 960px;
 	height: 100%;
 }
 #infoDiv {
@@ -39,6 +40,7 @@ form.dropzone {
 	background-color: #f6f6f6;
 	border-top: 1px solid lime;
 	position: fixed;
+	z-index: 3;
 	/*display: none;*/
 	/*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 	bottom: 0;

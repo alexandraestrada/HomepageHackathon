@@ -136,7 +136,7 @@
 
 <div id="canvas"></div>
 
-<script type="text/javascript" charset="utf-8" src="./js/interact.js"></script>
+<!-- <script type="text/javascript" charset="utf&#45;8" src="./js/interact.js"></script> -->
 
 <script type="text/javascript">
 
@@ -152,7 +152,11 @@ function KeyCheck(event)
    {
       case 8:
 				// If delete key is pressed, remove last selection from page, and from Model
-				canvas.removeChild(document.querySelector('.rect:last-child'));
+    var selection = document.querySelector('.rect:last-child')
+				canvas.removeChild(selection);
+				// remove mapping also
+				delete mapping[selection.getAttribute('data-sel-id')];
+				// console.log(mapping);
       break;
       case 46:
       alert("delete");
@@ -221,6 +225,9 @@ function dragMoveListener (event) {
 }
 
 
+// K - Selection id
+// V - Image id
+var mapping = new Object();
 
 	var canvas = document.getElementById("layoutDiv"),
 		mouse = {
@@ -232,7 +239,9 @@ function dragMoveListener (event) {
 		el = null;
 
 
+	var sel_cnt = 0;
 	canvas.onclick = function(e) {
+	  console.log(e);
 		if (dragging) {
 			dragging = false;
 			return;
@@ -245,6 +254,13 @@ function dragMoveListener (event) {
 			el.className = "rect resize-drag";
 			el.style.top = mouse.y + "px";
 			el.style.left = mouse.x + "px";
+			el.setAttribute('data-sel-id', sel_cnt);
+
+			// map this selection to the img
+			mapping[sel_cnt] = event.target.getAttribute('data-id');
+
+			sel_cnt += 1;
+
 			canvas.appendChild(el);
 			canvas.style.cursor = "crosshair";
 		} else {
@@ -278,7 +294,7 @@ function dragMoveListener (event) {
 		}
 		// subtract width
 		mouse.x = mouse.x - $('#imgDiv').width();
-		console.log(ev);
+		// console.log(ev);
 	};
 
 </script>

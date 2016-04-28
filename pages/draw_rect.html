@@ -87,6 +87,8 @@ function dragMoveListener (event) {
 		el = null;
 
 
+	var sel_cnt = 0;
+
 	canvas.onclick = function(e) {
 		if (dragging) {
 			dragging = false;
@@ -100,6 +102,9 @@ function dragMoveListener (event) {
 			el.className = "rect resize-drag";
 			el.style.top = mouse.y + "px";
 			el.style.left = mouse.x + "px";
+			el.setAttribute("id", 0);
+			sel_cnt += 1;
+
 			canvas.appendChild(el);
 			canvas.style.cursor = "crosshair";
 		} else {

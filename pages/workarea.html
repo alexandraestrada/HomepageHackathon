@@ -14,32 +14,32 @@
 		<div id="imgDiv">
 			<!-- <div id="fileDiv"><form id="dzForm" class="dropzone" action="/upload" method="post"></form></div> -->
 			<ul id="imgList">
-				<li><img class="draggable" src="./images/C6030042_01.png" /></li>
-				<li><img class="draggable" src="./images/C6030042_02.png" /></li>
-				<li><img class="draggable" src="./images/C6030042_03.jpg" /></li>
-				<li><img class="draggable" src="./images/C6030042_04.jpg" /></li>
-				<li><img class="draggable" src="./images/C6030042_05.gif" /></li>
-				<li><img class="draggable" src="./images/C6030042_06.jpg" /></li>
-				<li><img class="draggable" src="./images/C6030042_07.jpg" /></li>
-				<li><img class="draggable" src="./images/C6030042_08.jpg" /></li>
-				<li><img class="draggable" src="./images/C6030042_09.jpg" /></li>
-				<li><img class="draggable" src="./images/C6030042_10.jpg" /></li>
-				<li><img class="draggable" src="./images/C6030042_11.jpg" /></li>
-				<li><img class="draggable" src="./images/C6030042_12.jpg" /></li>
-				<li><img class="draggable" src="./images/C6030042_13.gif" /></li>
-				<li><img class="draggable" src="./images/C6030042_14.gif" /></li>
-				<li><img class="draggable" src="./images/C6030042_15.png" /></li>
-				<li><img class="draggable" src="./images/C6030042_16.jpg" /></li>
-				<li><img class="draggable" src="./images/C6030042_17.jpg" /></li>
-				<li><img class="draggable" src="./images/C6030042_18.jpg" /></li>
-				<li><img class="draggable" src="./images/C6030042_19.jpg" /></li>
-				<li><img class="draggable" src="./images/C6030042_20.jpg" /></li>
-				<li><img class="draggable" src="./images/C6030042_21.jpg" /></li>
-				<li><img class="draggable" src="./images/C6030042_22.png" /></li>
-				<li><img class="draggable" src="./images/C6030042_23.jpg" /></li>
-				<li><img class="draggable" src="./images/C6030042_24.jpg" /></li>
-				<li><img class="draggable" src="./images/C6030042_25.jpg" /></li>
-				<li><img class="draggable" src="./images/C6030042_26.png" /></li>
+				<li><img src="./images/C6030042_01.png" /></li>
+				<li><img src="./images/C6030042_02.png" /></li>
+				<li><img src="./images/C6030042_03.jpg" /></li>
+				<li><img src="./images/C6030042_04.jpg" /></li>
+				<li><img src="./images/C6030042_05.gif" /></li>
+				<li><img src="./images/C6030042_06.jpg" /></li>
+				<li><img src="./images/C6030042_07.jpg" /></li>
+				<li><img src="./images/C6030042_08.jpg" /></li>
+				<li><img src="./images/C6030042_09.jpg" /></li>
+				<li><img src="./images/C6030042_10.jpg" /></li>
+				<li><img src="./images/C6030042_11.jpg" /></li>
+				<li><img src="./images/C6030042_12.jpg" /></li>
+				<li><img src="./images/C6030042_13.gif" /></li>
+				<li><img src="./images/C6030042_14.gif" /></li>
+				<li><img src="./images/C6030042_15.png" /></li>
+				<li><img src="./images/C6030042_16.jpg" /></li>
+				<li><img src="./images/C6030042_17.jpg" /></li>
+				<li><img src="./images/C6030042_18.jpg" /></li>
+				<li><img src="./images/C6030042_19.jpg" /></li>
+				<li><img src="./images/C6030042_20.jpg" /></li>
+				<li><img src="./images/C6030042_21.jpg" /></li>
+				<li><img src="./images/C6030042_22.png" /></li>
+				<li><img src="./images/C6030042_23.jpg" /></li>
+				<li><img src="./images/C6030042_24.jpg" /></li>
+				<li><img src="./images/C6030042_25.jpg" /></li>
+				<li><img src="./images/C6030042_26.png" /></li>
 			</ul>
 		<!-- <ul>
 			<li class="draggable"><img src="./images/C6030042_01.png" /><div id="overlay">960 X 60</div></li>
@@ -58,9 +58,12 @@
 		</ul> -->
 		</div>
 		<div id="contentDiv" class="area">
-			<div>
+			<div id="layoutDiv">
 				<ul id="imgMainList">
 				</ul>
+			</div>
+			<div id="infoDiv">
+				Specify the alt text for this image: <input id="altInput" type="text"/> <button id="addAlt">Add</button>
 			</div>
 		</div>
 		<nav id="rightNav" class="main-menu">
@@ -111,3 +114,4 @@
 		</nav>
 	</div>
 </body>
+<script type="text/javascript" src="./js/main.js"></script>

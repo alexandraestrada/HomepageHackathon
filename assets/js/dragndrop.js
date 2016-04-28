@@ -1,15 +1,12 @@
 $(function() {
-  /*$("#imgList,#imgMainList").sortable({
-          connectWith: "#imgList,#imgMainList",
-  });
-  $("#imgList,#imgMainList").disableSelection();*/
-
   $( "#imgList, #imgMainList" ).sortable({
     "placeholder": "temp",
     "cursor": "move",
     "connectWith": "#imgMainList, #imgList",
     "start": ondrag,
-    "stop": ondrop
+    "stop": ondrop,
+    // "cursorAt": {top: 25, left: 25},
+    "revert": true
   });
   $( "#imgList, #imgMainList" ).disableSelection();
 
@@ -20,28 +17,37 @@ $(function() {
     }, 500);
   }
 
-  // interact('img.draggable')
-  //   .draggable({
-  //     inertia: true,
-  //     autoScroll: true,
-  //     onmove: dragMoveListener,
-  //     onend: function (event) {
-  //       alert("hi");
-  //     }
-  //   });
+  function ondrop(ev, ui) {
+    /*$("#infoDiv").css({
+      top: ui.item.offset().top + ui.item.find("img").height() + 20,
+      left: ui.item.offset().left
+    }).fadeIn(750);*/
+    $("#imgMainList").find("li.selected").removeClass("selected");
+    ui.item.addClass("selected");
+  }
 
-  //   function dragMoveListener (event) {
-  //     var target = event.target,
-  //         // keep the dragged position in the data-x/data-y attributes
-  //         x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-  //         y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+  /*interact('img.draggable')
+    .draggable({
+      inertia: true,
+      autoScroll: true,
+      onmove: dragMoveListener,
+      onend: function (event) {
+        alert("hi");
+      }
+    });
 
-  //     target.style.webkitTransform =
-  //     target.style.transform =
-  //       'translate(' + x + 'px, ' + y + 'px)';
+    function dragMoveListener (event) {
+      var target = event.target,
+          // keep the dragged position in the data-x/data-y attributes
+          x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+          y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
-  //     // update the posiion attributes
-  //     target.setAttribute('data-x', x);
-  //     target.setAttribute('data-y', y);
-  //   };
+      target.style.webkitTransform =
+      target.style.transform =
+        'translate(' + x + 'px, ' + y + 'px)';
+
+      // update the posiion attributes
+      target.setAttribute('data-x', x);
+      target.setAttribute('data-y', y);
+    };*/
 });

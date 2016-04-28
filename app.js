@@ -10,7 +10,8 @@ var path = require('path');
 var config = require('./config.js');
 formidable = require('formidable'),
    util = require('util'),
-   fs   = require('fs-extra')
+   fs   = require('fs-extra'),
+   http  = require('http');
 
 // test.saveItem()
 
@@ -111,6 +112,9 @@ app.get('/imageupload', function(req,res) {
 app.get('/workarea', function(req,res) {
   res.sendFile(path.join(__dirname + '/pages/workarea.html'))
 })
+app.get('/imageview', function(req,res) {
+  res.sendFile(path.join(__dirname + '/pages/imageview.html'))
+})
 
 app.post('/upload', function (req, res){
   var form = new formidable.IncomingForm();
@@ -126,29 +130,34 @@ app.post('/upload', function (req, res){
     /* The file name of the uploaded file */
     var file_name = this.openedFiles[0].name;
     /* Location where we want to copy the uploaded file */
-    var new_location = 'uploads/';
+    var new_location = './assets/images/uploads/';
 
     fs.copy(temp_path, new_location + file_name, function(err) {
       if (err) {
         console.error(err);
-      } else {
+      } 
+      else {
+
         console.log("success!")
+
       }
     });
+
   });
+  
 });
 
-app.get('/uploads/fullsize/:file', function (req, res){
-  file = req.params.file;
-  var img = fs.readFileSync(__dirname + "/uploads/fullsize/" + file);
-  res.writeHead(200, {'Content-Type': 'image/jpg' });
-  res.end(img, 'binary');
-});
+// app.get('/uploads/fullsize/:file', function (req, res){
+//   file = req.params.file;
+//   var img = fs.readFileSync(__dirname + "/uploads/fullsize/" + file);
+//   res.writeHead(200, {'Content-Type': 'image/jpg' });
+//   res.end(img, 'binary');
+// });
 
 
 // TODO handle this route
 app.get('/template/new', function(req, res, next) {
-
+  res.send()
 });
 
 

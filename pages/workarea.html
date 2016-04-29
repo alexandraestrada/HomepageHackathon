@@ -109,7 +109,7 @@
 		            <span class="nav-text">Documentation</span>
 		        </a></li>
 		        <li>
-		            <button class="ul-btn">Upload</span>
+		            <button class="dl-btn">Download</span>
 		        </li>
 		    </ul>
 		    <ul class="logout">
@@ -302,7 +302,7 @@ var mapping = new Object();
 
 
     // Download feature
-    var dlBtn = document.querySelector('.ul-btn');
+    var dlBtn = document.querySelector('.dl-btn');
     dlBtn.addEventListener('click', function(e) {
       var layoutDiv = document.querySelector('#layoutDiv');
 	console.log(layoutDiv);
@@ -314,6 +314,8 @@ var mapping = new Object();
 	  url: '/uploadhtml',
 	  data: {html: html},
 	  success: function(data) {
+	    // prompt user to download the response data
+	    window.location="download";
 	    console.log('success');
 	  }
 	});

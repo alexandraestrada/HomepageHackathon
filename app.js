@@ -33,7 +33,7 @@ formidable = require('formidable'),
 
 //bodyparser for POST requests
 // app.use(cookieParser()); // read cookies (needed for auth)
-// app.use(bodyParser()); // get information from html forms
+app.use(bodyParser()); // get information from html forms
 
 app.set('view-engine', 'ejs')
 
@@ -214,7 +214,14 @@ app.post('/uploadhtml', function(req, res, next) {
     console.log("wrote text to file");
     console.log(req.body.html);
   });
+  // Before sending response, make sure the final export file is ready from server.
+  // Otherwise, client can immediately request for the file before its ready to be served.
   res.send('uploaded');
+});
+
+app.get('/download', function(req, res, next) {
+  res.attachment('./test.html');  
+  res.send();
 });
 
 // app.route('/users')

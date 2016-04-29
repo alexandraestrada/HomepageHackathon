@@ -1,7 +1,16 @@
 $(function() {
 	"use strict";
 	$("#infoDiv").css("width", $("#contentDiv").width());
-	$("#altInput").focusout(function() { $("li.selected").find("img").attr("alt", $(this).val()); });
+	$("#altInput").focusout(function() {
+		if($("div.selected").length) $("div.selected").attr("data-alt", $(this).val());
+		else $("li.selected").find("img").attr("alt", $(this).val())
+	});
+	$("#hrefInput").focusout(function() { $("div.selected").attr("data-href", $(this).val()) });
+	$("body").keyup(function(ev) {
+		if(ev.keyCode === 8 || ev.keyCode === 46) {
+			$("div.selected").remove();
+		}
+	});
 
 	var isDraw = false;
 
@@ -17,20 +26,18 @@ $(function() {
 		},
 		"stop": function(ev, ui) {
 			$("#imgMainList").find("li.selected").removeClass("selected");
-			ui.item.addClass("selected");
+			ui.item.addClass("selected posRel");
 			$("#altInput").focus().val(ui.item.find("img").attr("alt") || "");
 			$("body").removeAttr("style");
+			$("#hrefP").hide();
 		},
 		"revert": true
 	});
 	$( "#imgList, #imgMainList" ).disableSelection();
 
 	$("#imgMainList").on("click", function(ev) {
-		if($("#altInput").val().length) {
-			$("li.selected").find("img").attr("alt", $("#altInput").val());
-		}
 		if(ev.target.tagName.toLowerCase() === "img") {
-			$("li.selected").removeClass("selected");
+			$("li.selected, div.selected").removeClass("selected");
 			$(ev.target).parent().addClass("selected");
 			$("#altInput").val($(ev.target).attr("alt") || "").focus();
 			if(isDraw) {
@@ -43,9 +50,16 @@ $(function() {
 				});
 				$img.parent().append($new);
 			}
-			!isDraw && $( "#imgList, #imgMainList" ).sortable("enable");
+			!isDraw && $( "#imgList, #imgMainList" ).sortable("enable") && $("#hrefP").hide();;
 		}
-		if(ev.target.tagName.toLowerCase() === "div") $( "#imgList, #imgMainList" ).sortable("disable");
+		if(ev.target.tagName.toLowerCase() === "div") {
+			$( "#imgList, #imgMainList" ).sortable("disable");
+			$("#hrefP").show();
+			$("#altInput").val($(ev.target).attr("data-alt") || "").focus();
+			$("#hrefInput").val($(ev.target).attr("data-href") || "");
+			$("div.selected, li.selected").removeClass("selected");
+			$(ev.target).addClass("selected");
+		}
 	});
 
 	window.dragMoveListener = function(event) {

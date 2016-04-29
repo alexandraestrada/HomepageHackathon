@@ -15,7 +15,7 @@ $(function() {
 			$rowDiv, $innerDiv, $innerUl, $img, $map,
 			i = 0, j, k, l,
 			imgLen, imgLen, temp, rowLen, row, mapName,
-			imgSrc = [], imgSizes = [], columns = [], isRowEven = [], coords = [];
+			imgSrc = [], imgSizes = [], columns = [], isRowEven = [], coords = [], alts = [], hrefs = [], imgalts = [];
 
 		{ // find images, get size and name
 			$("#imgMainList").find("img").each(function() {
@@ -24,16 +24,21 @@ $(function() {
 					width: $(this).width(),
 					height: $(this).height()
 				});
+				imgalts.push($(this).attr("alt"));
 				coords[i] = [];
+				alts[i] = [];
+				hrefs[i] = [];
 				$(this).parent().find("div").each(function() {
 					var $this = $(this);
 					temp = {
-						x0: parseInt($this.css("left")),
-						y0: parseInt($this.css("top")),
-						x1: parseInt($this.css("left")) + $this.width(),
-						y1: parseInt($this.css("top")) + $this.height()
+						x0: parseInt($this.css("left")) + parseInt($(this).attr("data-x")),
+						y0: parseInt($this.css("top")) + parseInt($(this).attr("data-y")),
+						x1: parseInt($this.css("left")) + $this.width() + parseInt($(this).attr("data-x")),
+						y1: parseInt($this.css("top")) + $this.height() + parseInt($(this).attr("data-y"))
 					}
 					coords[i].push(temp);
+					alts[i].push({data: $(this).attr("data-alt")});
+					hrefs[i].push({data: $(this).attr("data-href")});
 				});
 				i++;
 			});
@@ -88,12 +93,13 @@ $(function() {
 							"src" : imgSrc[k],
 							"width" : imgSizes[k].width,
 							"height" : imgSizes[k].height,
-							"usemap" : "#" + mapName
+							"usemap" : "#" + mapName,
+							"alt" : imgalts[k]
 						});
 						$innerDiv.append($img, '<map name="' + mapName + '" id="' + mapName + '" ' + row + '/>');
 						$map = $innerDiv.find("map");
 						for(l = 0; l < coords[k].length; l++) {
-							$map.append('<area coords="' + coords[k][l].x0 + ',' + coords[k][l].y0 + ',' + coords[k][l].x1 + ',' + coords[k][l].y1 + '"/>');
+							$map.append('<area shape="rect" coords="' + coords[k][l].x0 + ',' + coords[k][l].y0 + ',' + coords[k][l].x1 + ',' + coords[k][l].y1 + '" href="' + hrefs[k][l].data + '" alt="' + alts[k][l].data + '"/>');
 						}
 						$rowDiv.append($innerDiv);
 					}
@@ -110,12 +116,13 @@ $(function() {
 							"src" : imgSrc[k],
 							"width" : imgSizes[k].width,
 							"height" : imgSizes[k].height,
-							"usemap" : "#" + mapName
+							"usemap" : "#" + mapName,
+							"alt" : imgalts[k]
 						});
 						$innerUl.append('<li>' + $("<div/>").append($img.clone()).html() + '<map name="' + mapName + '" id="' + mapName + '" ' + row + '/></li>');
 						$map = $innerUl.find("map");
 						for(l = 0; l < coords[k].length; l++) {
-							$map.append('<area coords="' + coords[k][l].x0 + ',' + coords[k][l].y0 + ',' + coords[k][l].x1 + ',' + coords[k][l].y1 + '"/>');
+							$map.append('<area shape="rect" coords="' + coords[k][l].x0 + ',' + coords[k][l].y0 + ',' + coords[k][l].x1 + ',' + coords[k][l].y1 + '" href="' + hrefs[k][l].data + '" alt="' + alts[k][l].data + '"/>');
 						}
 					}
 				}

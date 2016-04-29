@@ -109,7 +109,7 @@
 		            <span class="nav-text">Documentation</span>
 		        </a></li>
 		        <li>
-		            <button class="dl-btn">Download</span>
+		            <button class="ul-btn">Upload</span>
 		        </li>
 		    </ul>
 		    <ul class="logout">
@@ -301,17 +301,29 @@ var mapping = new Object();
 	};
 
 
-// Download feature
-var dlBtn = document.querySelector('.dl-btn');
-dlBtn.addEventListener('click', function(e) {
+    // Download feature
+    var dlBtn = document.querySelector('.ul-btn');
+    dlBtn.addEventListener('click', function(e) {
+      var layoutDiv = document.querySelector('#layoutDiv');
+	console.log(layoutDiv);
+      var html = layoutDiv.outerHTML;
+      console.log("Posted HTML to server:");
+      console.log(html);
+	$.ajax({
+	  type: 'POST',
+	  url: '/uploadhtml',
+	  data: {html: html},
+	  success: function(data) {
+	    console.log('success');
+	  }
+	});
+      });
 
-});
+    function writeToFile() {
 
-function writeToFile() {
+    }
 
-}
-
-</script>
+  </script>
 
 
 </body>

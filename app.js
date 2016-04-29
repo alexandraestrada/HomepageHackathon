@@ -207,11 +207,12 @@ app.get('/template/new', function(req, res, next) {
 
 
 // Upload
-app.post('/upload', function(req, res, next) {
-  // console.log(req);
-  fs.writeFile('test.txt', 'Hi there', function(err) {
+app.post('/uploadhtml', function(req, res, next) {
+  console.log(req.body);
+  fs.writeFile('test.html', req.body.html, function(err) {
     if (err) return console.log(err);
-    console.log("wrote file");
+    console.log("wrote text to file");
+    console.log(req.body.html);
   });
   res.send('uploaded');
 });

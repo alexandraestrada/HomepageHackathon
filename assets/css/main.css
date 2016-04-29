@@ -109,8 +109,9 @@ form.dropzone {
 	margin: auto;
 	overflow-y: auto;
 	padding-top: 10px;
-	width: 960px;
+	width: 980px;
 	height: 100%;
+	padding-bottom: 130px;
 	background-color:white;
 }
 #infoDiv {

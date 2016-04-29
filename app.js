@@ -25,20 +25,7 @@ formidable = require('formidable'),
    jwt = require('jsonwebtoken')
    // superSecret = 'ilovescotchscotchyscotchscotch'
 
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true }));
-   // app.use(bodyParser.json())
-   // app.use(bodyParser.urlencoded({ extended: false }));
-
-   app.use(methodOverride(function(req, res){
-    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-      // look in urlencoded POST bodies and delete it
-      var method = req.body._method
-      delete req.body._method
-      return method
-    }
-   }))
-
+var fs = require('fs');
 
 // test.saveItem()
 
@@ -219,6 +206,19 @@ app.get('/template/new', function(req, res, next) {
 });
 
 
+// Upload
+app.post('/upload', function(req, res, next) {
+  // console.log(req);
+  fs.writeFile('test.txt', 'Hi there', function(err) {
+    if (err) return console.log(err);
+    console.log("wrote file");
+  });
+  res.send('uploaded');
+});
+
+// app.route('/users')
+//     .post(function(req,res) {
+//         var user = new User();
 
 
 //------Start Server---------

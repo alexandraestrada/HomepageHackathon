@@ -6,30 +6,79 @@ body {
 #logo {
 	height:65px;
 }
+.btn {
+	background-color: rgb(76,158,217);
+color: white;
+}
 .macys-nav {
 	border-bottom: 1px solid #ccc;
+}
+.actions {
+	list-style-type:none;
+	margin-top:2em;
+}
+.action-li {
+	display:inline-block;
+	padding-right:1em;
+}
+#attr-title {
+	margin-top:.5em;
+	margin-left:4.5em;
+	font-weight:normal;
+	font-size:1.3em;
+}
+.nav-text {
+	text-decoration: underline;
+	color:#666;
+	font-family: arial;
+	/*font-weight:bold;*/
+	font-size:1.3em;
 }
 .attrTagging {
 	margin-left:6.5em;
 	padding-top:.4em;
-	font-size:1.5em;
-	font-family:helvetica;
-	font-weight: bold;
-	color:rgb(2,138,244);
+	font-size:1em;
+	/*font-family:helvetica;*/
+	/*font-weight: bold;*/
+	/*color:rgb(2,138,244);*/
+	color:#666;
+
 }
 .attrTagging span {
-	margin-right:1em;
+	margin-right:.65em;
 	/*text-decoration: underline;*/
 }
 #mainDiv {
-	width: 100%;
+	width: calc(100%-65px);
 	height: calc(100% - 65px);
 	background: #e2e2e2;
  	overflow: hidden;
 }
+#config-list  {
+	list-style-type: none;
+}
+#config-list li {
+	display:inline-block;
+	font-size:1.2em;
+	/*font-family: helvetica;*/
+	color:#666;
+
+}
+#config-list li p input {
+	border:none;
+	outline:none;
+	/*outline-bottom:1px solid grey;*/
+	border-bottom:1px solid black;
+	color:rgb(76,158,217);
+}
+.pding-lft {
+	padding-left:10px;
+	font-size:.9em;
+}
 #fileDiv {
 	margin: 1em;
-	border: 5px dashed gray;
+	/*border: 5px dashed gray;*/
+	border:5px dashed rgb(76,158,217);
 	height: 90%;
 }
 #imgListCont {
@@ -45,9 +94,10 @@ form.dropzone {
 	text-align: center;
 	cursor: pointer;
 	padding-top: 50%;
+	color:rgb(76,158,217);
 }
 #contentDiv {
-    height: calc(100% - 46px);
+    /*height: calc(100% - 46px);*/
     float: left;
     width: calc(80% - 60px);
     overflow-x: hidden;
@@ -73,7 +123,7 @@ form.dropzone {
 	width:100% !important;
 }
 #infoDiv input {
-	width: 50%;
+	width: 40%;
 }
 #infoDiv button {
 	background-color: orange;

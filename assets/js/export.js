@@ -1,7 +1,9 @@
 $(function() {
 	"use strict";
 
-	$("#exportA").click(function() {
+	$("#preview").click(function() {
+		localStorage.clear();
+		console.log(localStorage)
 		var hpWidth = 960, sum = 0, folder="20160429", isBlock = false,
 			strings = {
 				"link" : '<link rel="stylesheet" href="./css/macy-base.css" type="text/css" />',

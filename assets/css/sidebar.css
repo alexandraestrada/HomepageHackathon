@@ -12,7 +12,10 @@
 }
 .main-menu:hover,nav.main-menu.expanded { width:250px; overflow:visible; }
 .main-menu {
-    background:#fbfbfb;
+    /*background:#fbfbfb;*/
+    /*background:#666;*/
+    background: rgb(76,158,217);
+    color:#fbfbfb;
     position:absolute;
     top:0;
     bottom:0;
@@ -22,10 +25,9 @@
     -webkit-transition:width .05s linear;
     transition:width .05s linear;
     -webkit-transform:translateZ(0) scale(1,1);
-    z-index:1000;
-}
+   }
 #leftNav { left:0; border-right:2px solid lime; }
-#rightNav { right: 0;margin-top: 5em; }
+#rightNav { right: 0;margin-top: 5.7em; }
 .main-menu:last-child {
 	left: auto;
 	right: 0;
@@ -41,7 +43,7 @@
     display:table;
     border-collapse:collapse;
     border-spacing:0;
-    color:#999;
+    color:#fff;
      font-family: arial;
     font-size: 14px;
     text-decoration:none;
@@ -64,6 +66,8 @@
     vertical-align:middle;
     width:190px;
     font-family: 'Titillium Web', sans-serif;
+    color:#fbfbfb;
+    text-decoration: none;
 }
 .main-menu > ul.logout {
     position:absolute;

@@ -5,6 +5,8 @@
 	<script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script type="text/javascript" src="./js/main.js"></script>
 	<script type="text/javascript" src="./js/export.js"></script>
+	<script type="text/javascript" src="./js/preview.js"></script>
+
 	<script type="text/javascript" src="./js/dropzone.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -19,14 +21,27 @@
 <body>
 	<div class="container-fluid macys-nav">
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-4">
 				<img id="logo" src="./images/logo.png" />
 			</div>
-			<div class="col-md-6 text-right">
-				   <ul class="logout">
-		        <li><a id="exportA" href="/preview" target="_blank">
+			<div class="col-md-5">
+				<div style="margin-top:2.5em;">
+					<ul id="config-list">
+						<li class="file-info"><p>Live Date:<input class="pding-lft" id="Live Date" type="text" placeholder="e.g. 04.27.2016"/></p></li>
+						<li class="file-info"><p>File Name:<input class="pding-lft" id="File Name" type="text" placeholder="e.g. 0402716_hp_int"/></p></li>
+
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<ul class="actions">
+		        <li class="action-li"><a  href="/preview" target="_blank">
 		            <!-- <i class="fa fa-power-off fa-2x"></i> -->
-		            <span class="nav-text">Preview Page</span>
+		            <span class="nav-text"><button id="preview" class="btn">Preview Page</button></span>
+		        </a></li>
+		         <li class="action-li"><a href="#" target="_blank">
+		            <!-- <i class="fa fa-power-off fa-2x"></i> -->
+		            <span class="nav-text"><button id="export"class="btn">Export</button></span>
 		        </a></li>
 		    </ul>
 			</div>
@@ -44,20 +59,20 @@
 		</div>
 		<div></div>
 		<div id="contentDiv" class="area">
+			
 			<div id="layoutDiv">
 				<ul id="imgMainList">
 				</ul>
 			</div>
+		
 			<div id="infoDiv">
-
-				<div ><p class="attrTagging"><span>Alt:</span> <input id="altInput" type="text"/></p></div>
+				<!-- <div style="background-color:white;border-radius:5px;width:40%"> -->
+					<h3 id="attr-title">Attributes:</h3>
+					<div ><p class="attrTagging"><span >Alt:</span> <input id="altInput" type="text"/></p>
+						<p class="attrTagging"><span>Url: </span> <input id="altInput" type="text"/></p>
+					</div>
+				<!-- </div> -->
 				
-
-			</div>
-			<div id="infoDiv">
-				<div ><p class="attrTagging"><span>Alt:</span> <input id="altInput" type="text"/></p>
-					<!-- <p class="attrTagging"><span>Href:</span> <input id="altInput" type="text"/></p> -->
-				</div>
 				
 			</div>
 
@@ -102,12 +117,7 @@
 		            <span class="nav-text">Documentation</span>
 		        </a></li>
 		    </ul>
-		   <!--  <ul class="logout">
-		        <li><a id="exportA" href="/preview" target="_blank">
-		            <i class="fa fa-power-off fa-2x"></i>
-		            <span class="nav-text">EXPORT THIS PAGE</span>
-		        </a></li>
-		    </ul> -->
+		 
 		</nav>
 	</div>
 </body>

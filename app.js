@@ -15,25 +15,27 @@ var passport = require('passport');
 var flash    = require('connect-flash');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var http = require('http');
+var fsnative = require('fs');
+
 
 var methodOverride = require('method-override');
 console.log(templateView)
 formidable = require('formidable'),
    util = require('util'),
    fs   = require('fs-extra'),
-   http  = require('http'),
    jwt = require('jsonwebtoken')
    // superSecret = 'ilovescotchscotchyscotchscotch'
+app.use(bodyParser.urlencoded());
 
+app.use(bodyParser.json());
 // var fs = require('fs');
 
 // test.saveItem()
 
 // ------APP Configs-----------
 
-//bodyparser for POST requests
-// app.use(cookieParser()); // read cookies (needed for auth)
-// app.use(bodyParser()); // get information from html forms
+
 
 app.set('view-engine', 'ejs')
 
@@ -54,58 +56,7 @@ app.use(morgan('dev'))
 //-------Routes ---------------
 
 
-//------User Routes---------
 
-// app.get('/setup', function(req,res) {
-//   var carmen = new User({
-//     racID: 'm88',
-//     password: 'password',
-//     admin:true
-//   })
-
-//   carmen.save(function(err) {
-//     if(err) throw err;
-//     console.log('user saved successss');
-//     res.json({succes: true})
-//   })
-// })
-
-// app.get('/login',function(req,res) {
-//  res.sendFile(path.join(__dirname + '/pages/login.html'))
-
-// } )
-// app.post('/authenticate', function(req,res) {
-//   User.findOne({racID: req.body.racID})
-//   console.log(req.body.racID)
-// })
-
-// app.post('/authenticate', function(req,res) {
-//   User.findOne({
-//     racID: req.body.racID
-//   }, function(err,user) {
-//     if (err) throw err;
-//     if(!user) {
-//       res.json({success:false, message: "Authenication failed b/c user does not exist"})
-//     }
-//     else if(user) {
-//       if(user.password != req.body.password) {
-//         res.json({success:false, message: "Auth failed! wrong password"})
-//       }
-//       else {
-//         var token = jwt.sign(user, app.get(superSecret), {
-//           expiresInMinutes:1440
-//         })
-//         res.json({
-//           success:true,
-//           message: "enjoy your token",
-//           token: token
-//         })
-//       }
-//     }
-//   })
-// })
-
-// })
 
 //-------- HP Route -------
 
@@ -122,11 +73,30 @@ app.get('/templates', function(req,res) {
 app.get('/template', function(req,res) {
   res.render('template.ejs')
 })
-app.get('/preview', function(req,res,data) {
+app.get('/preview', function(req,res) {
   res.render('preview.ejs')
 })
+// app.get('/export', function(req,res) {
+//   res.end()
+// })
+// app.get('/export', function(req,res) {
+//   res.attachment('index.html')
+// })
+// app.post('/export', function(req,res) {
+//   // console.log('success')
+//    var data = req.body.data
+//    console.log(data)
+//    // app.set('data', req.body.data)
+//    // console.log(data)
+//   //  fs.writeFile(path.join(__dirname + 'hp.html')) 
+//   //  res.setHeader('Content-Type', 'application/octet-stream')
+//   // res.end(JSON.stringify(data, null, 2), 'utf8')
+// })
 
-
+// var file = fs.createWriteStream("file.jpg");
+// var request = http.get("http://i3.ytimg.com/vi/J---aiyznGQ/mqdefault.jpg", function(response) {
+//   response.pipe(file);
+// });
 
 
 

@@ -1,7 +1,28 @@
 $(function() {
 	"use strict";
 
-	$("#exportA").click(function() {
+	$("#preview").click(function() {
+		preprocess();
+	});
+
+	$("#export").click(function(e) {
+		e.preventDefault();
+		var htmlBody = preprocess();
+		$.ajax({
+		  type: 'POST',
+		  url: '/uploadhtml',
+		  data: {html: htmlBody},
+		  success: function(data) {
+		    // prompt user to download the response data
+		    window.location="download";
+		    console.log('success');
+		  }
+		});
+	});
+
+	function preprocess() {
+		localStorage.clear();
+		console.log(localStorage)
 		var hpWidth = 960, sum = 0, folder="20160429", isBlock = false,
 			strings = {
 				"link" : '<link rel="stylesheet" href="./css/macy-base.css" type="text/css" />',
@@ -130,7 +151,7 @@ $(function() {
 			}
 			isBlock && $head.append($style) && $style.append(strings.blockCss);
 		}
-console.log($body.html());
 		localStorage.setItem('template', $body.html());
-	});
+		return $body.html();
+	}
 });

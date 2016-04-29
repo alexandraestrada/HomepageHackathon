@@ -3,6 +3,9 @@ body {
 	margin: 0;
 	padding: 0;
 }
+#logo {
+	height:5em;
+}
 #mainDiv {
 	width: 100%;
 	height: 100%;
@@ -11,11 +14,19 @@ body {
 }
 #fileDiv {
 	margin: 1em;
-	border: 5px dashed gray;
+	/*border: 5px dashed gray;*/
 	height: 90%;
 }
+#imgList {
+	/*display:none;*/
+	
+}
+.dz-message {
+	font-size:1.3em !important;
+	font-family:helvetica !important;
+}
 form.dropzone {
-	height: 50%;
+	height: 100%;
 	text-align: center;
 	cursor: pointer;
 	padding-top: 50%;
@@ -35,7 +46,7 @@ form.dropzone {
 	height: 100%;
 }
 #infoDiv {
-	height: 35px;
+	height: 75px;
 	padding: 5px 0;
 	background-color: #f6f6f6;
 	border-top: 1px solid lime;
@@ -44,7 +55,7 @@ form.dropzone {
 	/*display: none;*/
 	/*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 	bottom: 0;
-	right: 60px;
+	width:100% !important;
 }
 #infoDiv input {
 	width: 50%;

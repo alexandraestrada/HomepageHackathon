@@ -25,7 +25,7 @@ formidable = require('formidable'),
    jwt = require('jsonwebtoken')
    // superSecret = 'ilovescotchscotchyscotchscotch'
 
-var fs = require('fs');
+// var fs = require('fs');
 
 // test.saveItem()
 

@@ -25,7 +25,7 @@
     z-index:1000;
 }
 #leftNav { left:0; border-right:2px solid lime; }
-#rightNav { right: 0; border-left:2px solid lime; }
+#rightNav { right: 0;margin-top: 5em; }
 .main-menu:last-child {
 	left: auto;
 	right: 0;

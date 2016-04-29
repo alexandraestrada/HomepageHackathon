@@ -6,7 +6,10 @@
 	<script type="text/javascript" src="./js/main.js"></script>
 	<script type="text/javascript" src="./js/dragndrop.js"></script>
 	<script type="text/javascript" src="./js/dropzone.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 	
 
 	<script type="text/javascript" src="./js/export.js"></script>
@@ -16,6 +19,22 @@
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
 </head>
 <body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6">
+				<img id="logo" src="./images/logo.png" />
+			</div>
+			<div class="col-md-6">
+				   <ul class="logout">
+		        <li><a id="exportA" href="/preview" target="_blank">
+		            <!-- <i class="fa fa-power-off fa-2x"></i> -->
+		            <span class="nav-text">Preview Page</span>
+		        </a></li>
+		    </ul>
+			</div>
+		</div>
+
+	</div>
 	<div id="mainDiv">
 		<div id="imgDiv">
 			<div id="fileDiv"><form id="dzForm" class="dropzone" action="/upload" method="post"></form></div>
@@ -29,7 +48,8 @@
 				</ul>
 			</div>
 			<div id="infoDiv">
-				Specify the alt text for this image: <input id="altInput" type="text"/>
+				<div id=""><p>Specify the alt text for this image: <input id="altInput" type="text"/></p></div>
+				
 			</div>
 		</div>
 		<nav id="rightNav" class="main-menu">
@@ -71,12 +91,12 @@
 		            <span class="nav-text">Documentation</span>
 		        </a></li>
 		    </ul>
-		    <ul class="logout">
+		   <!--  <ul class="logout">
 		        <li><a id="exportA" href="/preview" target="_blank">
 		            <i class="fa fa-power-off fa-2x"></i>
 		            <span class="nav-text">EXPORT THIS PAGE</span>
 		        </a></li>
-		    </ul>
+		    </ul> -->
 		</nav>
 	</div>
 </body>

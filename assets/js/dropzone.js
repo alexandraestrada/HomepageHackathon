@@ -8,7 +8,7 @@ Dropzone.options.dzForm = {
 			$("#dzForm").append($('<input type="hidden" ' +
               'name="files[]" ' + 'value="' + resp.fileName + '">'))
 			console.log(file.name)
-
+			// $('#imgList').show()
 			$('#imgList').append('<li><img /></li>');
 			$('#imgList li:last-child img').attr('src', './images/uploads/' + file.name)
 			

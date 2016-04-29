@@ -1,23 +1,44 @@
 var express= require('express');
+var http= require('http');
 var app = express();
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
 // var port = process.env.PORT || 5000;
 var test = require('./models/test.js');
+var templateView = require('./models/template.js').templateView;
+
 var User = require('./models/user.js');
 var path = require('path');
 var config = require('./config');
 var passport = require('passport');
 var flash    = require('connect-flash');
 var cookieParser = require('cookie-parser');
-var session      = require('express-session');
+var session = require('express-session');
+
+var methodOverride = require('method-override');
+console.log(templateView)
 formidable = require('formidable'),
    util = require('util'),
    fs   = require('fs-extra'),
    http  = require('http'),
    jwt = require('jsonwebtoken')
    // superSecret = 'ilovescotchscotchyscotchscotch'
+
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true }));
+   // app.use(bodyParser.json())
+   // app.use(bodyParser.urlencoded({ extended: false }));
+
+   app.use(methodOverride(function(req, res){
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+      // look in urlencoded POST bodies and delete it
+      var method = req.body._method
+      delete req.body._method
+      return method
+    }
+   }))
+
 
 // test.saveItem()
 
@@ -111,8 +132,20 @@ app.get('/templates', function(req,res) {
   res.render('templates.ejs')
 })
 
+app.get('/template', function(req,res) {
+  res.render('template.ejs')
+})
+app.get('/preview', function(req,res,data) {
+  res.render('preview.ejs')
+})
 
 
+
+
+
+app.get('/practice', function(req,res) {
+  res.render('practice.ejs')
+})
 
 // static route
 // - This should be for static resources, like js/css/html files

@@ -18,13 +18,13 @@ $(function() {
 			imgLen, imgLen, temp, rowLen, row, mapName,
 			imgSrc = [], imgSizes = [], columns = [], isRowEven = [];
 
-		$html.append($head, $body);
-		$head.append(strings.link, $style);
-		$body.css({
-			width: hpWidth,
-			margin: "auto"
-		});
-		$style.append(strings.genCss);
+		// $html.append($head, $body);
+		// $head.append(strings.link, $style);
+		// $body.css({
+		// 	width: hpWidth,
+		// 	margin: "auto"
+		// });
+		// $style.append(strings.genCss);
 
 		{ // find images, get size and name
 			$("#imgMainList").find("img").each(function() {
@@ -98,22 +98,27 @@ $(function() {
 						mapName = folder + "_map" + (k + 1);
 						$img = $("<img/>");
 						$img.attr({
-							"src" : imgSrc[k],
+							"src" : "images/" + imgSrc[k],
 							"width" : imgSizes[k].width,
 							"height" : imgSizes[k].height,
 							"usemap" : "#" + mapName
 						});
-						$innerUl.append('<li>' + $("<div/>").append($img.clone()).html() + '<map name="' + mapName + '" id="' + mapName + '" ' + row + '/></li>');
+						$innerUl.append('<li>' + $img + '<map name="' + mapName + '" id="' + mapName + '" ' + row + '/></li>');
 					}
 				}
 				$body.append($rowDiv);
 			}
 			isBlock && $head.append($style) && $style.append(strings.blockCss);
 		}
+		var bodyContent = $body.html()
+		// bodyContent = JSON.stringify(bodyContent)
 
-		var wnd = window.open("about:blank", "", "_blank");
-		wnd.document.write($html.html());
+		// var params = encodeURIComponent(bodyContent)
 
-		//console.log($body.html());
+		// var wnd = window.open("about:blank", "", "_blank");
+		// wnd.document.write($html.html());
+		localStorage.setItem('template', bodyContent)
+		console.log(localStorage)
+
 	});
 });

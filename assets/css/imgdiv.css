@@ -4,7 +4,10 @@
 	overflow-y: auto;
 	overflow-x: hidden;
 	width: 20%;
-	border:5px dashed grey;
+	background-color:white;
+	border-right:2px solid #ccc;
+	/*border:5px dashed grey;*/
+	/*background-color:rgb(236,240,241);*/
 }
 #imgDiv img, #layoutDiv img {
 	width: 100%;
@@ -13,7 +16,7 @@
 }
 .temp {
 	-webkit-animation: glow1 1s ease-in-out infinite;
-	/*animation: glow1 1s ease-in-out infinite;*/
+	animation: glow1 1s ease-in-out infinite;
 }
 @-webkit-keyframes glow1 {50% { box-shadow: 0 0 30px blue; }}
 @keyframes glow1 {50% { box-shadow: 0 0 30px blue; }}

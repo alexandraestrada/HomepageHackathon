@@ -4,21 +4,24 @@ body {
 	padding: 0;
 }
 #logo {
-	height:5em;
+	height:65px;
+}
+.macys-nav {
+	border-bottom: 1px solid #ccc;
 }
 #mainDiv {
 	width: 100%;
-	height: 100%;
+	height: calc(100% - 65px);
 	background: #e2e2e2;
  	overflow: hidden;
 }
 #fileDiv {
 	margin: 1em;
-	/*border: 5px dashed gray;*/
+	border: 5px dashed gray;
 	height: 90%;
 }
-#imgList {
-	/*display:none;*/
+#imgListCont {
+	height:80%;
 	
 }
 .dz-message {
@@ -44,6 +47,7 @@ form.dropzone {
 	padding-top: 10px;
 	width: 960px;
 	height: 100%;
+	background-color:white;
 }
 #infoDiv {
 	height: 75px;

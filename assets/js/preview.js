@@ -1,0 +1,177 @@
+
+
+
+
+
+
+
+
+$(function() {
+	"use strict";
+
+	$("#export").click(function(e) {
+		e.preventDefault()
+
+		// localStorage.clear();
+		// console.log(localStorage)
+	
+
+		var hpWidth = 960, sum = 0, folder="20160429", isBlock = false,
+			strings = {
+				"link" : '<link rel="stylesheet" href="./css/macy-base.css" type="text/css" />',
+				"genCss" : "#globalContentContainer { border: none !important;}",
+				"blockCss" : ".block_grid ul, .block_grid li {margin: 0px !important;padding: 0px !important;}"
+			},
+			$html = $("<html/>"),
+			$head = $("<head/>"),
+			$style = $("<style/>"),
+			$body = $("<body/>"),
+			$rowDiv, $innerDiv, $innerUl, $img, $map,
+			i = 0, j, k, l,
+			imgLen, imgLen, temp, rowLen, row, mapName,
+			imgSrc = [], imgSizes = [], columns = [], isRowEven = [], coords = [];
+
+		{ // find images, get size and name
+			$("#imgMainList").find("img").each(function() {
+				imgSrc.push($(this).attr("src"));
+				imgSizes.push({
+					width: $(this).width(),
+					height: $(this).height()
+				});
+				coords[i] = [];
+				$(this).parent().find("div").each(function() {
+					var $this = $(this);
+					temp = {
+						x0: parseInt($this.css("left")),
+						y0: parseInt($this.css("top")),
+						x1: parseInt($this.css("left")) + $this.width(),
+						y1: parseInt($this.css("top")) + $this.height()
+					}
+					coords[i].push(temp);
+				});
+				i++;
+			});
+			imgLen = imgSizes.length;
+			//console.log(coords);
+		}
+
+		{ // get rows and columns
+			temp = "";
+			for(i = 0, j = 0, k = 1; i < imgLen; i++, k++) {
+				sum += imgSizes[i].width;
+				if(sum >= hpWidth) {
+					if(k > 1 && sum > hpWidth) {
+						temp = "";
+						for(l = i - k + 1; l <= i; l++) temp += ", " + imgSrc[l];
+						alert("One or more images not sliced correctly! [" + temp.substring(2) + "]");
+					}
+					columns[j++] = k;
+					sum = 0;
+					k = 0;
+				}
+			}
+			if(temp) return false;
+			sum !== 0 && alert("Last row does not fill the full width of the page!\nAre you missing one or more images?\n");
+			rowLen = j;
+		}
+
+		for(i = 0, k = 0; i < rowLen; i++) {
+			inner: for(j = 0; j < columns[i]; j++) {
+				temp = imgSizes[k + j].width;
+				if(temp > hpWidth) {
+					j++;
+					break inner;
+				} else if(temp % 60 !== 0) break inner;
+			}
+			isRowEven[i] = j === columns[i];
+			k += columns[i];
+		}
+
+		{ // build html and apply foundation
+			for(i = 0, k = 0; i < rowLen; i++) {
+				row = 'data-row-num="row_' + ("00" + (i + 1)).slice(-2) + '"';
+				if(isRowEven[i]) {
+					// apply row-column classes
+					$rowDiv = $('<div class="row collapse" ' + row + '/>');
+					for(j = 0; j < columns[i]; j++, k++) {
+						temp = imgSizes[k].width;
+						mapName = folder + "_map" + (k + 1);
+						$innerDiv = $('<div class="small-' + (temp <= hpWidth ? temp / 60 : 16) + ' column"/>');
+						$img = $("<img/>");
+						$img.attr({
+							"src" : imgSrc[k],
+							"width" : imgSizes[k].width,
+							"height" : imgSizes[k].height,
+							"usemap" : "#" + mapName
+						});
+						$innerDiv.append($img, '<map name="' + mapName + '" id="' + mapName + '" ' + row + '/>');
+						$map = $innerDiv.find("map");
+						for(l = 0; l < coords[k].length; l++) {
+							$map.append('<area coords="' + coords[k][l].x0 + ',' + coords[k][l].y0 + ',' + coords[k][l].x1 + ',' + coords[k][l].y1 + '"/>');
+						}
+						$rowDiv.append($innerDiv);
+					}
+				} else {
+					// apply block_grid class
+					isBlock = true;
+					$rowDiv = $('<div class="row collapse block_grid" ' + row + '/>');
+					$innerUl = $('<ul class="small-block-grid-' + columns[i] + '"/>');
+					$rowDiv.append($innerUl);
+					for(j = 0; j < columns[i]; j++, k++) {
+						mapName = folder + "_map" + (k + 1);
+						$img = $("<img/>");
+						$img.attr({
+							"src" : imgSrc[k],
+							"width" : imgSizes[k].width,
+							"height" : imgSizes[k].height,
+							"usemap" : "#" + mapName
+						});
+						$innerUl.append('<li>' + $("<div/>").append($img.clone()).html() + '<map name="' + mapName + '" id="' + mapName + '" ' + row + '/></li>');
+						$map = $innerUl.find("map");
+						for(l = 0; l < coords[k].length; l++) {
+							$map.append('<area coords="' + coords[k][l].x0 + ',' + coords[k][l].y0 + ',' + coords[k][l].x1 + ',' + coords[k][l].y1 + '"/>');
+						}
+					}
+				}
+				$body.append($rowDiv);
+			}
+			isBlock && $head.append($style) && $style.append(strings.blockCss);
+		}
+// console.log($body.html());
+
+		console.log($body.html());
+			var htmlBody = $body.html()
+		
+
+  
+      console.log("Posted HTML to server:");
+      console.log(htmlBody);
+	$.ajax({
+	  type: 'POST',
+	  url: '/uploadhtml',
+	  data: {html: htmlBody},
+	  success: function(data) {
+	    // prompt user to download the response data
+	    window.location="download";
+	    console.log('success');
+	  }
+	});
+     
+
+
+	
+		   
+		 
+		 
+		 
+		// $.ajax({
+		// 	method:'POST',
+		// 	url:'/export',
+		// 	data: {data: htmlBody},
+		// 	dataType: 'html',
+		// 	success:function() {
+		// 		console.log('sucess sending:' + data)
+		// 	}
+		// })
+	});
+});

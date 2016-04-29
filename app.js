@@ -183,7 +183,7 @@ app.get('/template/new', function(req, res, next) {
 // Upload
 app.post('/uploadhtml', function(req, res, next) {
   console.log(req.body);
-  fs.writeFile('test.html', req.body.html, function(err) {
+  fs.writeFile('homepage.jsp', req.body.html, function(err) {
     if (err) return console.log(err);
     console.log("wrote text to file");
     console.log(req.body.html);
@@ -195,8 +195,8 @@ app.post('/uploadhtml', function(req, res, next) {
 });
 
 app.get('/download', function(req, res, next) {
-  res.attachment('./test.html');  
-  res.sendFile(path.join(__dirname + '/test.html'));
+  res.attachment('./homepage.jsp');  
+  res.sendFile(path.join(__dirname + '/homepage.jsp'));
 });
 
 // app.route('/users')

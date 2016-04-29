@@ -38,25 +38,15 @@ li.selected {
 @-webkit-keyframes glow2 {50% { box-shadow: 0 0 10px blue; }}
 @keyframes glow2 {50% { box-shadow: 0 0 10px blue; }}
 #layoutDiv ul, #layoutDiv li { margin: 0; }
-/*#imgDiv li { position: relative; }
-#imgDiv li:hover div {
-	display: block;
-	background-color: black;
-	opacity: 0.9;
-	color: white;
-	text-align: center;
-	cursor: move;
-}
-#imgDiv span {
-	position: relative;
-	font-size: 1.5em;
-	top: 45%;
-}
-#overlay {
+.rect {
+	border: 1px dashed black;
+	background-color: #0ff;
+	opacity: 0.4;
 	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	display: none;
-}*/
+	z-index: 3;
+	width: 25px;
+	height: 25px;
+}
+.resize-drag {
+  box-sizing: border-box;
+}

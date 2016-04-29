@@ -4,15 +4,13 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script type="text/javascript" src="./js/main.js"></script>
-	<script type="text/javascript" src="./js/dragndrop.js"></script>
+	<script type="text/javascript" src="./js/export.js"></script>
 	<script type="text/javascript" src="./js/dropzone.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-	
 
-	<script type="text/javascript" src="./js/export.js"></script>
 	<link rel="stylesheet" type="text/css" href="./css/main.css"/>
 	<link rel="stylesheet" type="text/css" href="./css/sidebar.css"/>
 	<link rel="stylesheet" type="text/css" href="./css/imgDiv.css"/>
@@ -39,7 +37,7 @@
 		<div id="imgDiv">
 			<div id="imgListCont">
 			<div id="fileDiv"><form id="dzForm" class="dropzone" action="/upload" method="post"></form></div>
-			<ul id="imgList">	
+			<ul id="imgList">
 			</ul>
 			</div>
 
@@ -52,18 +50,18 @@
 			</div>
 			<div id="infoDiv">
 				<div id=""><p>Specify the alt text for this image: <input id="altInput" type="text"/></p></div>
-				
+
 			</div>
 		</div>
 		<nav id="rightNav" class="main-menu">
 		    <ul>
-		        <li><a href="#">
+		        <li><a id="drawRect" href="#">
 		            <i class="fa fa-home fa-2x"></i>
-		            <span class="nav-text">Dashboard</span>
+		            <span class="nav-text">Draw Rectangle</span>
 		        </a></li>
-		        <li class="has-subnav"><a href="#">
+		        <li class="has-subnav"><a id="selectA" href="#">
 		            <i class="fa fa-laptop fa-2x"></i>
-		            <span class="nav-text">UI Components</span>
+		            <span class="nav-text">Select Tool</span>
 		        </a></li>
 		        <li class="has-subnav"><a href="#">
 		            <i class="fa fa-list fa-2x"></i>

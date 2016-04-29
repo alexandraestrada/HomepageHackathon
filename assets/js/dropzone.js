@@ -6,12 +6,11 @@ Dropzone.options.dzForm = {
 			$('#fileDiv').css('display','none');
 			var imageArray = []
 			$("#dzForm").append($('<input type="hidden" ' +
-              'name="files[]" ' + 'value="' + resp.fileName + '">'))
-			console.log(file.name)
+              'name="files[]" ' + 'value="' + resp.fileName + '">'));
 			// $('#imgList').show()
 			$('#imgList').append('<li><img /></li>');
 			$('#imgList li:last-child img').attr('src', './images/uploads/' + file.name)
-			
+
 		})
 	}
 }

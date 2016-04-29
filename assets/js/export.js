@@ -12,19 +12,10 @@ $(function() {
 			$head = $("<head/>"),
 			$style = $("<style/>"),
 			$body = $("<body/>"),
-			//$body = $('<body style="width: ' + hpWidth + 'px; margin: auto"/>'),
-			$rowDiv, $innerDiv, $innerUl, $img,
-			i, j, k, l,
+			$rowDiv, $innerDiv, $innerUl, $img, $map,
+			i = 0, j, k, l,
 			imgLen, imgLen, temp, rowLen, row, mapName,
-			imgSrc = [], imgSizes = [], columns = [], isRowEven = [];
-
-		// $html.append($head, $body);
-		// $head.append(strings.link, $style);
-		// $body.css({
-		// 	width: hpWidth,
-		// 	margin: "auto"
-		// });
-		// $style.append(strings.genCss);
+			imgSrc = [], imgSizes = [], columns = [], isRowEven = [], coords = [];
 
 		{ // find images, get size and name
 			$("#imgMainList").find("img").each(function() {
@@ -33,11 +24,25 @@ $(function() {
 					width: $(this).width(),
 					height: $(this).height()
 				});
+				coords[i] = [];
+				$(this).parent().find("div").each(function() {
+					var $this = $(this);
+					temp = {
+						x0: parseInt($this.css("left")),
+						y0: parseInt($this.css("top")),
+						x1: parseInt($this.css("left")) + $this.width(),
+						y1: parseInt($this.css("top")) + $this.height()
+					}
+					coords[i].push(temp);
+				});
+				i++;
 			});
 			imgLen = imgSizes.length;
+			//console.log(coords);
 		}
 
 		{ // get rows and columns
+			temp = "";
 			for(i = 0, j = 0, k = 1; i < imgLen; i++, k++) {
 				sum += imgSizes[i].width;
 				if(sum >= hpWidth) {
@@ -86,6 +91,10 @@ $(function() {
 							"usemap" : "#" + mapName
 						});
 						$innerDiv.append($img, '<map name="' + mapName + '" id="' + mapName + '" ' + row + '/>');
+						$map = $innerDiv.find("map");
+						for(l = 0; l < coords[k].length; l++) {
+							$map.append('<area coords="' + coords[k][l].x0 + ',' + coords[k][l].y0 + ',' + coords[k][l].x1 + ',' + coords[k][l].y1 + '"/>');
+						}
 						$rowDiv.append($innerDiv);
 					}
 				} else {
@@ -98,27 +107,23 @@ $(function() {
 						mapName = folder + "_map" + (k + 1);
 						$img = $("<img/>");
 						$img.attr({
-							"src" : "images/" + imgSrc[k],
+							"src" : imgSrc[k],
 							"width" : imgSizes[k].width,
 							"height" : imgSizes[k].height,
 							"usemap" : "#" + mapName
 						});
-						$innerUl.append('<li>' + $img + '<map name="' + mapName + '" id="' + mapName + '" ' + row + '/></li>');
+						$innerUl.append('<li>' + $("<div/>").append($img.clone()).html() + '<map name="' + mapName + '" id="' + mapName + '" ' + row + '/></li>');
+						$map = $innerUl.find("map");
+						for(l = 0; l < coords[k].length; l++) {
+							$map.append('<area coords="' + coords[k][l].x0 + ',' + coords[k][l].y0 + ',' + coords[k][l].x1 + ',' + coords[k][l].y1 + '"/>');
+						}
 					}
 				}
 				$body.append($rowDiv);
 			}
 			isBlock && $head.append($style) && $style.append(strings.blockCss);
 		}
-		var bodyContent = $body.html()
-		// bodyContent = JSON.stringify(bodyContent)
-
-		// var params = encodeURIComponent(bodyContent)
-
-		// var wnd = window.open("about:blank", "", "_blank");
-		// wnd.document.write($html.html());
-		localStorage.setItem('template', bodyContent)
-		console.log(localStorage)
-
+console.log($body.html());
+		localStorage.setItem('template', $body.html());
 	});
 });

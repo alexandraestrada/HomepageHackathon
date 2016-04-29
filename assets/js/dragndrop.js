@@ -17,6 +17,8 @@ $(function() {
     }, 500);
   }
 
+  var img_cnt = 0;
+
   function ondrop(ev, ui) {
     /*$("#infoDiv").css({
       top: ui.item.offset().top + ui.item.find("img").height() + 20,
@@ -24,6 +26,8 @@ $(function() {
     }).fadeIn(750);*/
     $("#imgMainList").find("li.selected").removeClass("selected");
     ui.item.addClass("selected");
+    ui.item.find('img').attr('data-id', img_cnt);
+    img_cnt += 1;
     $("#altInput").focus().val(ui.item.find("img").attr("alt") || "");
   }
 

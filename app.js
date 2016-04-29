@@ -36,6 +36,10 @@ app.use(bodyParser.json());
 // ------APP Configs-----------
 
 
+//bodyparser for POST requests
+// app.use(cookieParser()); // read cookies (needed for auth)
+app.use(bodyParser()); // get information from html forms
+
 
 app.set('view-engine', 'ejs')
 
@@ -184,7 +188,15 @@ app.post('/uploadhtml', function(req, res, next) {
     console.log("wrote text to file");
     console.log(req.body.html);
   });
+  // TODO
+  // Before sending response, make sure the final export file is ready from server.
+  // Otherwise, client can immediately request for the file before its ready to be served.
   res.send('uploaded');
+});
+
+app.get('/download', function(req, res, next) {
+  res.attachment('./test.html');  
+  res.sendFile(path.join(__dirname + '/test.html'));
 });
 
 // app.route('/users')

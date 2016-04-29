@@ -108,12 +108,9 @@
 		            <i class="fa fa-info fa-2x"></i>
 		            <span class="nav-text">Documentation</span>
 		        </a></li>
-		        <li>
-		            <button class="ul-btn">Upload</span>
-		        </li>
 		    </ul>
 		    <ul class="logout">
-		        <li><a id="exportA" href="#">
+		        <li><a class='dl-btn' id="exportA" href="#">
 		            <i class="fa fa-power-off fa-2x"></i>
 		            <span class="nav-text">EXPORT THIS PAGE</span>
 		        </a></li>
@@ -302,7 +299,7 @@ var mapping = new Object();
 
 
     // Download feature
-    var dlBtn = document.querySelector('.ul-btn');
+    var dlBtn = document.querySelector('.dl-btn');
     dlBtn.addEventListener('click', function(e) {
       var layoutDiv = document.querySelector('#layoutDiv');
 	console.log(layoutDiv);
@@ -314,6 +311,8 @@ var mapping = new Object();
 	  url: '/uploadhtml',
 	  data: {html: html},
 	  success: function(data) {
+	    // prompt user to download the response data
+	    window.location="download";
 	    console.log('success');
 	  }
 	});

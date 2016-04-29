@@ -214,6 +214,7 @@ app.post('/uploadhtml', function(req, res, next) {
     console.log("wrote text to file");
     console.log(req.body.html);
   });
+  // TODO
   // Before sending response, make sure the final export file is ready from server.
   // Otherwise, client can immediately request for the file before its ready to be served.
   res.send('uploaded');
@@ -221,7 +222,7 @@ app.post('/uploadhtml', function(req, res, next) {
 
 app.get('/download', function(req, res, next) {
   res.attachment('./test.html');  
-  res.send();
+  res.sendFile(path.join(__dirname + '/test.html'));
 });
 
 // app.route('/users')

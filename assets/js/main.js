@@ -6,12 +6,12 @@ $(function() {
 		else $("li.selected").find("img").attr("alt", $(this).val())
 	});
 	$("#hrefInput").focusout(function() { $("div.selected").attr("data-href", $(this).val()) });
-	// $("body").keyup(function(ev) {
-	// 	if(ev.keyCode === 8 || ev.keyCode === 46) {
-	// 		if($("#altInput").is(":focus") || $("#hrefInput").is(":focus")) return;
-	// 		$("div.selected").remove();
-	// 	}
-	// });
+	$("body").keyup(function(ev) {
+		if(ev.keyCode === 8 || ev.keyCode === 46) {
+			if($("#altInput").is(":focus") || $("#hrefInput").is(":focus")) return;
+			$("div.selected").remove();
+		}
+	});
 
 	var isDraw = false;
 

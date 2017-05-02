@@ -1,0 +1,1 @@
+<div class="row collapse" data-row-num="row_01"><div class="small-16 column"><img src="./images/uploads/Screen Shot 2016-05-02 at 5.15.42 PM.png" width="960" height="744" usemap="#20160429_map1" alt=""><map name="20160429_map1" id="20160429_map1" data-row-num="row_01"><area shape="rect" coords="484,367,699,403" href="http://macys.com" alt="checkout"></map></div></div>

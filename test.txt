@@ -1,0 +1,4 @@
+<div id="layoutDiv">
+					<ul id="imgMainList" class="ui-sortable">
+					<li class="ui-sortable-handle"><img src="./images/C6030042_03.jpg" data-id="0"></li><li class="ui-sortable-handle selected"><img src="./images/C6030042_07.jpg" data-id="3" alt=""></li><li class="ui-sortable-handle"><img src="./images/C6030042_04.jpg" data-id="1"></li><li class="ui-sortable-handle"><img src="./images/C6030042_06.jpg" data-id="2" alt=""></li></ul>
+				</div>
